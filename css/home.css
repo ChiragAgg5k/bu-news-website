@@ -1,3 +1,12 @@
+:root{
+    --dark-blue: #23549F;
+    --medium-blue: #406595;
+    --light-blue: #4BA5E8;
+    --dark-red: #992A35;
+    --light-red: #C9383A;
+    --light-gray: #F1F1F1;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -6,7 +15,15 @@
 
 body{
     font-family: sans-serif;
-    background: black;
+    background: var(--light-gray);
+}
+
+.topborder{
+    position: fixed;
+    width: 100%;
+    height: 20px;
+    background: var(--medium-blue);
+    transition: top 0.3s;
 }
 
 nav{
@@ -17,9 +34,11 @@ nav{
     color: #000;
     overflow: hidden;
     position: fixed;
-    top: 0;
+    top: 20px;
     width: 100%;
-    height: 10vh;
+    height: 70px;
+    transition: all 0.3s;
+    border-bottom: 1px solid #ccc;
 }
 
 nav .logo{
@@ -73,4 +92,3 @@ nav .nav-links li a:hover{
         display: none;
     }
 }
-    
