@@ -11,6 +11,7 @@
     --dark-red: #992A35;
     --light-red: #C9383A;
     --light-gray: #F1F1F1;
+    --medium-light-gray: #94969A;
     --medium-gray: #3D4043;
     --dark-gray: #292A2D;
     --darker-gray: #202124;
@@ -66,7 +67,7 @@ hr{
 
 .fa-solid{
     font-size: 1.5rem;
-    background-color: var(--dark-blue);
+    background-color: var(--dark-red);
     color: #fff;
     padding: 12px;
     border-radius: 50%;
@@ -74,7 +75,7 @@ hr{
 }
 
 .fa-solid:hover{
-    background-color: var(--light-blue);
+    background-color: var(--light-red);
     cursor: pointer;
     transform: scale(1.05);
 }
@@ -103,6 +104,35 @@ hr{
 
 .nav-bar ul li a:hover{
     background: #406595;
+}
+
+.banner{
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    padding: 30px 0;
+    margin-top: 8px;
+}
+
+.banner-main-content{
+    padding: 0 2rem;
+    line-height: 1.7;
+}
+
+.banner-main-content h2{
+    font-size: 2rem;
+    font-family: var(--heading-font);
+}
+
+.banner-main-content h3{
+    padding: 1rem 0;
+}
+
+.current-news-head{
+    background-color: #fff;
+    font-size: 14px;
+    margin: 20px 0;
 }
 
 @media(max-width:800px){
