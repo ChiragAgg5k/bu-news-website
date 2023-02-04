@@ -7,3 +7,25 @@ footer{
     display: flex;
     justify-content: space-between;
 }
+
+footer a{
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer a:hover{
+    text-decoration: underline;
+    scale: 1.1;
+}
+
+footer i{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+footer .left{
+    display: flex;
+    align-items: center;
+}
+
