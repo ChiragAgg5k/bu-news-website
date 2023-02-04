@@ -1,35 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="../css/signup.css">
     <link rel="icon" href="assets/images/bunews_logo.png" type="image/png">
     <script src="https://kit.fontawesome.com/cbae3ce0e6.js" crossorigin="anonymous"></script>
     <title>SignUp</title>
 </head>
+
 <body>
     <script id="replace_with_navbar" src="../js/nav.js"></script>
 
-    <form action="signup.php" method="POST">
-        <h1>Sign Up</h1>
-        <div class="inputBox">
-            <input type="text" name="name" required>
-            <label>Name</label>
+    <div class="wrapper">
+
+
+        <div class="form_container">
+            <form name="form">
+                <div class="heading">
+                    <h2>Sign Up</h2>
+                </div>
+                <div class="form_wrap ">
+                    <div class="form_item">
+                        <label>Name</label>
+                        <input type="text" placeholder="Enter Name" class="inputbox">
+                        <div class="error" id="fname"></div>
+                    </div>
+
+                </div>
+                <div class="form_wrap">
+                    <div class="form_item">
+                        <label>Enrollment ID</label>
+                        <input type="text" placeholder="Enrollment ID" class="inputbox">
+                        <div class="error" id="enrollment"></div>
+                    </div>
+                </div>
+                <div class="form_wrap">
+                    <div class="form_item">
+                        <label>Contact</label>
+                        <input type="number" placeholder="Enter Mobile Number" class="inputbox">
+                        <div class="error" id="phone"></div>
+                    </div>
+                </div>
+                <div class="form_wrap">
+                    <div class="form_item">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter Email" class="inputbox">
+                        <div class="error" id="email"></div>
+                    </div>
+                </div>
+
+                <div class="form_wrap">
+                    <div class="form_item">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter Password" class="inputbox">
+                        <div class="error" id="password"></div>
+                    </div>
+                </div>
+
+
+                <div class="btn">
+                    <input type="submit" value="SignUp" class="signupbtn btn-grad">
+                </div>
+            </form>
         </div>
-        <div class="inputBox">
-            <input type="text" name="email" required>
-            <label>Email</label>
-        </div>
-        <div class="inputBox">
-            <input type="password" name="password" required>
-            <label>Password</label>
-        </div>
-        <div class="inputBox">
-            <input type="password" name="password2" required>
-            <label>Confirm Password</label>
-        </div>
-        <input type="submit" name="submit" value="Sign Up">
+    </div>
+
+    <script id="replace_with_footer" src="../js/footer.js"></script>
 </body>
+
 </html>
