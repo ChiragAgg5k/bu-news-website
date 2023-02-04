@@ -18,37 +18,37 @@
 
 
         <div class="form_container">
-            <form name="form">
+            <form name="form" action="php/signup.php" method='post'>
                 <div class="heading">
                     <h2>Sign Up</h2>
                 </div>
                 <div class="form_wrap ">
                     <div class="form_item">
                         <label>Name</label>
-                        <input type="text" placeholder="Enter Name" class="inputbox">
-                        <div class="error" id="fname"></div>
+                        <input type="text" placeholder="Enter Full Name" class="inputbox">
+                        <div class="error" name='username' id="username"></div>
                     </div>
 
                 </div>
                 <div class="form_wrap">
                     <div class="form_item">
                         <label>Enrollment ID</label>
-                        <input type="text" placeholder="Enrollment ID" class="inputbox">
-                        <div class="error" id="enrollment"></div>
+                        <input type="text" placeholder="Enter Enrollment ID" class="inputbox">
+                        <div class="error" name='enroll' id="enroll"></div>
                     </div>
                 </div>
                 <div class="form_wrap">
                     <div class="form_item">
                         <label>Contact</label>
                         <input type="number" placeholder="Enter Mobile Number" class="inputbox">
-                        <div class="error" id="phone"></div>
+                        <div class="error" name='phone' id="phone"></div>
                     </div>
                 </div>
                 <div class="form_wrap">
                     <div class="form_item">
                         <label>Email Address</label>
                         <input type="email" placeholder="Enter Email" class="inputbox">
-                        <div class="error" id="email"></div>
+                        <div class="error" name='email' id="email"></div>
                     </div>
                 </div>
 
@@ -56,13 +56,13 @@
                     <div class="form_item">
                         <label>Password</label>
                         <input type="password" placeholder="Enter Password" class="inputbox">
-                        <div class="error" id="password"></div>
+                        <div class="error" name='password' id="password"></div>
                     </div>
                 </div>
 
 
                 <div class="btn">
-                    <input type="submit" value="SignUp" class="signupbtn btn-grad">
+                    <input type="submit" name='submit' id='submit' value="SignUp" class="signupbtn btn-grad">
                 </div>
             </form>
         </div>
