@@ -3,6 +3,8 @@
 
 :root{
     --dark-blue: #23549F;
+    --medium-blue: #406595;
+    --light-blue: #4BA5E8;
     --dark-red: #992A35;
     --light-red: #C9383A;
     --lighter-red: #C8363A;
@@ -38,7 +40,7 @@ body {
 }
 
 .heading {
-    background: var(--dark-blue);
+    background: #000;
     margin: -30px;
     text-align: center;
     color: white;
@@ -106,7 +108,7 @@ body {
 }
 
 .btn-grad {
-    background-image: linear-gradient(to right, var(--dark-red) 0%, var(--light-red) 51%, var(--lighter-red) 100%);
+    background-image: linear-gradient(to right, var(--dark-blue) 0%, var(--medium-blue) 51%, var(--light-blue) 100%);
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
@@ -125,6 +127,7 @@ body {
     /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .inputbox {

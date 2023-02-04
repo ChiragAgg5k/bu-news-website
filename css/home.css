@@ -34,12 +34,37 @@
 }
 
 .banner-image {
-    width: 50%;
-    background-size: cover;
+    width: 750px;
+    height: 400px;
     background-position: center;
     background-repeat: no-repeat;
     margin: 20px;
+    overflow: hidden;
+    border-radius: 10px;
 }
+
+.banner-image .images{
+    height: auto;
+    width: 100%;
+    transition: 0.3s all ease-in-out;
+}
+
+.images img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
 
 .banner-main-content {
     padding: 0 2rem;
