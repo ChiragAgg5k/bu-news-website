@@ -1,5 +1,5 @@
 # BU News
 
-https://chiragagg5k.github.io/bu-news/
+https://bu-news.netlify.app/
 
 work in progress
