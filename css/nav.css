@@ -103,3 +103,9 @@ hr {
 .nav-bar ul li a:hover {
     background: #406595;
 }
+
+@media screen and (max-width: 600px) {
+    .nav-bar ul li a {
+        flex-direction: column;
+    }
+}
