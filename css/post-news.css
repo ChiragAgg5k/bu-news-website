@@ -1,45 +1,46 @@
-h1 {
-  text-align: center;
-  margin: 20px 0;
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 label {
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 input[type="text"],
 textarea {
   padding: 10px;
-  margin-bottom: 20px;
-  font-size: 16px;
+  margin-bottom: -20px;
+  font-size: 20px;
   border-radius: 5px;
   border: 1px solid gray;
 }
 
 input[type="file"] {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 input[type="submit"] {
   padding: 10px 20px;
-  background-color: #23549F;
+  background-color: blue;
   border-radius: 5px;
   border: none;
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-input[type="submit"]:hover {
-  background-color: #1A3F7A;
-  scale: 1.05;
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#preview {
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid gray;
 }
