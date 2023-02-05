@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <style>
+      .news-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .news-item {
+        width: 33.33%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+
+      .news-date {
+        font-weight: bold;
+      }
+
+      @media only screen and (max-width: 100%) {
+        .news-container {
+          flex-wrap: wrap;
+        }
+        .news-item {
+          display: block;
+          width: 100%;
+        }
+
+        .news-date,
+        h2,
+        p {
+          font-size: larger;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Latest News</h1>
+    <div class="news-container">
+      <div class="news-item">
+        <div class="news-date">02/03/2023</div>
+        <h2>Headline 1</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
+          euismod odio, gravida pellentesque urna varius vitae.
+        </p>
+      </div>
+      <div class="news-item">
+        <div class="news-date">02/02/2023</div>
+        <h2>Headline 2</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
+          euismod odio, gravida pellentesque urna varius vitae.
+        </p>
+      </div>
+      <div class="news-item">
+        <div class="news-date">02/01/2023</div>
+        <h2>Headline 3</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
+          euismod odio, gravida pellentesque urna varius vitae.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
