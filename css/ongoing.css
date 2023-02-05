@@ -1,0 +1,31 @@
+.news-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .news-item {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .news-date {
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 100%) {
+    .news-container {
+      flex-wrap: wrap;
+    }
+    .news-item {
+      display: block;
+      width: 100%;
+    }
+
+    .news-date,
+    h2,
+    p {
+      font-size: larger;
+    }
+  }
