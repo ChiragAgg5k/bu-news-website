@@ -63,6 +63,12 @@ hr {
 
 .web-name h1 {
     padding-right: 5px;
+    transition: 0.3s;
+}
+
+.web-name h1:hover{
+    cursor: pointer;
+    scale: 1.05;  
 }
 
 .fa-solid {
