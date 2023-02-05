@@ -3,87 +3,87 @@
 
 :root {
 
-    /* Colors */
-    --darker-blue: #1A3B5A;
-    --dark-blue: #23549F;
-    --medium-blue: #406595;
-    --light-blue: #4BA5E8;
-    --dark-red: #992A35;
-    --light-red: #C9383A;
-    --light-gray: #F1F1F1;
-    --medium-light-gray: #94969A;
-    --medium-gray: #3D4043;
-    --dark-gray: #292A2D;
-    --darker-gray: #202124;
+  /* Colors */
+  --darker-blue: #1A3B5A;
+  --dark-blue: #23549F;
+  --medium-blue: #406595;
+  --light-blue: #4BA5E8;
+  --dark-red: #992A35;
+  --light-red: #C9383A;
+  --light-gray: #F1F1F1;
+  --medium-light-gray: #94969A;
+  --medium-gray: #3D4043;
+  --dark-gray: #292A2D;
+  --darker-gray: #202124;
 
-    --heading-font: 'Montserrat', sans-serif;
+  --heading-font: 'Montserrat', sans-serif;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Raleway', 'sans-serif';
-    background: #fff;
+  font-family: 'Raleway', 'sans-serif';
+  background: #fff;
 }
 
 img {
-    width: 100%;
+  width: 100%;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    color: #000;
+  text-decoration: none;
+  color: #000;
 }
 
 hr {
-    width: 95vw;
-    margin: 0 auto;
+  width: 95vw;
+  margin: 0 auto;
 }
 
 .top-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 30px;
 }
 
 .web-name {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .web-name h1 {
-    padding-right: 5px;
-    transition: 0.3s;
+  padding-right: 5px;
+  transition: 0.3s;
 }
 
-.web-name h1:hover{
-    cursor: pointer;
-    scale: 1.05;  
+.web-name h1:hover {
+  cursor: pointer;
+  scale: 1.05;
 }
 
 .fa-solid {
-    font-size: 1.5rem;
-    background-color: var(--dark-red);
-    color: #fff;
-    padding: 12px;
-    border-radius: 50%;
-    transition: all 0.2s ease;
+  font-size: 1.5rem;
+  background-color: var(--dark-red);
+  color: #fff;
+  padding: 12px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
 }
 
 .fa-solid:hover {
-    background-color: var(--light-red);
-    cursor: pointer;
-    transform: scale(1.05);
+  background-color: var(--light-red);
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .nav {
@@ -93,65 +93,70 @@ hr {
   position: relative;
 }
 
-.nav > .nav-header {
+.nav>.nav-header {
   display: inline;
 }
 
-.nav > .nav-header > .nav-title {
+.nav>.nav-header>.nav-title {
   display: inline-block;
   font-size: 22px;
   color: #fff;
   padding: 10px 10px 10px 10px;
 }
 
-.nav > .nav-btn {
+.nav>.nav-btn {
   display: none;
 }
 
-.nav > .nav-links {
+.nav>.nav-links {
   display: inline;
   float: right;
   font-size: 18px;
 }
 
-.nav > .nav-links > a {
+.nav>.nav-links>a {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
   color: #efefef;
 }
 
-.nav > .nav-links > a:hover {
+.nav>.nav-links>a:hover {
   background-color: var(--medium-blue);
 }
 
-.nav > #nav-check {
+.nav>#nav-check {
   display: none;
 }
 
 @media (max-width:600px) {
-  .nav > .nav-btn {
+  .nav>.nav-btn {
     display: inline-block;
     position: absolute;
     right: 0px;
     top: 0px;
   }
-  .nav > .nav-btn > label {
+
+  .nav>.nav-btn>label {
     display: inline-block;
     width: 50px;
     height: 50px;
     padding: 13px;
   }
-  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+
+  .nav>.nav-btn>label:hover,
+  .nav #nav-check:checked~.nav-btn>label {
     background-color: var(--dark-blue);
   }
-  .nav > .nav-btn > label > span {
+
+  .nav>.nav-btn>label>span {
     display: block;
     width: 25px;
     height: 10px;
     border-top: 2px solid #eee;
   }
-  .nav > .nav-links {
+
+  .nav>.nav-links {
     position: absolute;
     display: block;
     width: 100%;
@@ -162,19 +167,22 @@ hr {
     top: 50px;
     left: 0px;
   }
-  .nav > .nav-links > a {
+
+  .nav>.nav-links>a {
     display: block;
     width: 100%;
   }
-  .nav > #nav-check:not(:checked) ~ .nav-links {
+
+  .nav>#nav-check:not(:checked)~.nav-links {
     height: 0px;
   }
-  .nav > #nav-check:checked ~ .nav-links {
+
+  .nav>#nav-check:checked~.nav-links {
     height: auto;
     overflow-y: auto;
   }
 
-  .web-name h4{
+  .web-name h4 {
     display: none;
   }
 }

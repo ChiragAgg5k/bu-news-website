@@ -1,4 +1,4 @@
-footer{
+footer {
     background-color: #23549F;
     padding: 20px;
     color: #fff;
@@ -9,34 +9,33 @@ footer{
     height: auto;
 }
 
-footer a{
+footer a {
     color: #fff;
     text-decoration: none;
     transition: 0.3s;
 }
 
-footer a:hover{
+footer a:hover {
     text-decoration: underline;
     scale: 1.1;
 }
 
-footer i{
+footer i {
     font-size: 20px;
     margin-right: 10px;
 }
 
-footer .left{
+footer .left {
     display: flex;
     align-items: center;
 }
 
-.left{
+.left {
     font-size: 1.4em;
 }
 
-.right{
+.right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
-

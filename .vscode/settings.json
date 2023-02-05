@@ -1,4 +1,14 @@
 {
     "editor.formatOnSave": true,
-    "html.format.enable": true
+    "html.format.enable": true,
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[html]": {
+        "editor.suggest.insertMode": "replace",
+        "gitlens.codeLens.scopes": [
+            "document"
+        ],
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
 }
