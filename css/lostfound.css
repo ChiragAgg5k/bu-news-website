@@ -1,15 +1,13 @@
-body{
-	margin:0;
-	color:#ffffff;
-	background:white;
-	font:600 16px/18px 'Open Sans',sans-serif;
-}
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
 a{color:inherit;text-decoration:none}
 
 .login-wrap{
+	margin:0;
+	color:#ffffff;
+	background:white;
+	font:600 16px/18px 'Open Sans',sans-serif;
 	width:100%;
 	margin: 7% auto;
     margin-top: 5%;
@@ -86,7 +84,6 @@ a{color:inherit;text-decoration:none}
 	background:rgba(67, 67, 67, 0.1);
 }
 .login-form .group input[data-type="password"]{
-	text-security:circle;
 	-webkit-text-security:circle;
 }
 .login-form .group .label{
@@ -155,3 +152,11 @@ a{color:inherit;text-decoration:none}
     color: grey;
 }
 
+.button{
+	cursor: pointer;
+	transition: 0.3s ease-in-out;	
+}
+
+.button:hover{
+	scale: 1.05	;
+}

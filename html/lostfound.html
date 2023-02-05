@@ -1,16 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/cbae3ce0e6.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+	<title>Lost and found</title>
+	<link rel="stylesheet" type="text/css" href="../css/lostfound.css">
+	<script src="https://kit.fontawesome.com/cbae3ce0e6.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <script id="replace_with_navbar" src="../js/nav.js"></script>
+	<script id="replace_with_navbar" src="../js/nav.js"></script>
 
-    <!-- <script id="replace_with_footer" src="../js/footer.js"></script> -->
+	<div class="login-wrap">
+		<div class="login-html">
+			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Lost</label>
+			<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Found</label>
+			<div class="login-form">
+				<div class="lost">
+					<div class="group">
+						<label for="lostitem" class="label">Lost Item</label>
+						<input id="Item" type="text" class="input">
+					</div>
+					
+					<div class="group">
+						<label for="description" class="label">Item Description</label>
+						<textarea name="description" id="" cols="20" rows="10" class="input"></textarea>
+					</div>
 
+					<div class="group">
+						<label for="contact" class="label">Contact details</label>
+						<input id="contact" type="text" class="input">
+					</div>
+					<div class="group">
+						<button class="button">Submit Details</button>
+					</div>
+					<div class="hr"></div>
+					
+				</div>
+				<div class="found">
+					<div class="group">
+						<label for="founditem" class="label">Found Item</label>
+						<input id="founditem" type="text" class="input">
+					</div>
+					<div class="group">
+						<label for="description" class="label">Item Description</label>
+						<textarea name="description" id="" cols="20" rows="10" class="input"></textarea>
+					</div>
+
+					<div class="group">
+						<label for="contact" class="label">Contact details</label>
+						<input id="contact" type="text" class="input">
+					</div>
+					<div class="group">
+						<button class="button">Submit Details</button>
+					</div>
+					<div class="hr"></div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script id="replace_with_footer" src="../js/footer.js"></script>
 </body>
+
 </html>
