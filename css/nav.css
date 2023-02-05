@@ -71,6 +71,27 @@ hr {
   scale: 1.05;
 }
 
+span {
+  display: flex;
+  align-items: center;
+}
+
+.post-button {
+  background-color: var(--dark-red);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s;
+  margin-right: 10px;
+}
+
+.post-button:hover {
+  background-color: var(--light-red);
+  cursor: pointer;
+  scale: 1.05;
+}
+
 .fa-solid {
   font-size: 1.5rem;
   background-color: var(--dark-red);
