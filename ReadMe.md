@@ -3,6 +3,7 @@
 |![thumbnail_desktop](assets/thumbnail_desktop.png)|![thumbnail_mobile](assets/thumbnail_mobile.png)|  
 
 > https://bu-news.netlify.app/
+> https://github.com/ChiragAgg5k/bu-news
 
 ## About
 
