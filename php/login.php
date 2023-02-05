@@ -10,6 +10,12 @@ $dbusername = "amanboor_root";
 $dbpassword = "Am@100704";
 $dbname = "amanboor_project";
 
+// // Connect to the localhost database
+// $servername = "localhost";
+// $dbusername = "root";
+// $dbpassword = "";
+// $dbname = "bu-news-db";
+
 $conn = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
 
 if (!$conn) {
@@ -26,4 +32,3 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 mysqli_close($conn);
-?>

@@ -1,15 +1,15 @@
 <?php
   // Connect to the aman's database
-  // $servername = "amanboora.in";
-  // $username = "amanboor_root";
-  // $password = "Am@100704";
-  // $dbname = "amanboor_project";
+  $servername = "amanboora.in";
+  $username = "amanboor_root";
+  $password = "Am@100704";
+  $dbname = "amanboor_project";
 
-  // Connect to the localhost database
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "bu-news-db";
+  // // Connect to the localhost database
+  // $servername = "localhost";
+  // $username = "root";
+  // $password = "";
+  // $dbname = "bu-news-db";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,12 +22,12 @@
   // Get the user input
   $username = $_POST['username'];
   $enroll = $_POST['enroll'];
-  $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $email = $_POST['email'];
   $password = $_POST['password'];
 
   // Prepare and execute the SQL statement
-  $stmt = $conn->prepare("INSERT INTO signup-info (username, enroll, email, phone, password) VALUES (?, ?, ?, ?, ?)");
+  $stmt = $conn->prepare("INSERT INTO signup-info(enroll, username, email, phone, password) VALUES(?, ?, ?, ?, ?)");
   $stmt->bind_param("sssis", $username, $enroll, $email, $phone, $password);
   $stmt->execute();
 
