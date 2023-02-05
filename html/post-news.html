@@ -2,27 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/post-news.css">
-    <link rel="icon" href="assets/images/bunews_logo.png" type="image/png">
-    <script src="https://kit.fontawesome.com/cbae3ce0e6.js" crossorigin="anonymous"></script>
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/post-news.css">
+  <link rel="icon" href="assets/images/bunews_logo.png" type="image/png">
+  <script src="https://kit.fontawesome.com/cbae3ce0e6.js" crossorigin="anonymous"></script>
+  <title>Login</title>
 </head>
 
 <body>
-    <script id="replace_with_navbar" src="../js/nav.js"></script>
+  <script id="replace_with_navbar" src="../js/nav.js"></script>
+
   <body>
     <div class="form-container">
       <h1>Input Form</h1>
-      <form action="submit.php" method="post" enctype="multipart/form-data">
-        <label for="title">Title:</label>
+      <form action="submit.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <label for="title">News Title:</label>
         <input type="text" id="title" name="title"><br><br>
+        <div id="title-error" class="error"></div>
+
         <label for="description">Description:</label>
         <textarea id="description" name="description"></textarea><br><br>
+        <div id="description-error" class="error"></div>
         <label for="image">Image:</label>
-        <input type="file" id="image" name="image"><br><br>
+        <input type="file" id="image" name="image" onchange="previewImage()"><br><br>
+        <div id="image-error" class="error"></div>
         <input type="submit" value="Submit">
       </form>
     </div>
