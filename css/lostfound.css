@@ -1,8 +1,3 @@
-*,:after,:before{box-sizing:border-box}
-.clearfix:after,.clearfix:before{content:'';display:table}
-.clearfix:after{clear:both;display:block}
-a{color:inherit;text-decoration:none}
-
 .login-wrap{
 	margin:0;
 	color:#ffffff;
@@ -73,7 +68,7 @@ a{color:inherit;text-decoration:none}
 .login-form .group .input,
 .login-form .group .button{
 	width:100%;
-	color:#fff;
+	color:#000;
 	display:block;
 }
 .login-form .group .input,
@@ -92,6 +87,7 @@ a{color:inherit;text-decoration:none}
 }
 .login-form .group .button{
 	background:black;
+	color: white;
 }
 .login-form .group label .icon{
 	width:15px;
