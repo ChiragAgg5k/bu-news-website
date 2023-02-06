@@ -1,39 +1,26 @@
 <?php
-  // Connect to the aman's database
-  $servername = "amanboora.in";
-  $username = "amanboor_root";
-  $password = "Am@100704";
-  $dbname = "amanboor_project";
 
-  // // Connect to the localhost database
-  // $servername = "localhost";
-  // $username = "root";
-  // $password = "";
-  // $dbname = "bu-news-db";
+require_once 'config.php';
 
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
+// Get the data from the form
+$fullname = $_POST['fullname'];
+$enrollid = $_POST['enrollid'];
+$contact = $_POST['contact'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+// Check if the user already exists
+$sql = "SELECT * FROM users WHERE enrollid = :enrollid";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['enrollid' => $enrollid]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  // Get the user input
-  $username = $_POST['username'];
-  $enroll = $_POST['enroll'];
-  $phone = $_POST['phone'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-
-  // Prepare and execute the SQL statement
-  $stmt = $conn->prepare("INSERT INTO signup-info(enroll, username, email, phone, password) VALUES(?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssis", $username, $enroll, $email, $phone, $password);
-  $stmt->execute();
-
-  // Show a success message
-  echo "Signup successful";
-
-  // Close the connection
-  $conn->close();
-?>
+if ($user) {
+    echo "User already exists";
+} else {
+    // Insert the user into the database
+    $sql = "INSERT INTO users (fullname, enrollid, contact, email, password) VALUES (:fullname, :enrollid, :contact, :email, :password)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['fullname' => $fullname, 'enrollid' => $enrollid, 'contact' => $contact, 'email' => $email, 'password' => $password]);
+    echo "User created successfully";
+}

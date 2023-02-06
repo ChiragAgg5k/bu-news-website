@@ -1,6 +1,7 @@
 {
     "editor.formatOnSave": true,
     "html.format.enable": true,
+    "liveServer.settings.port": 3000,
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
@@ -10,5 +11,8 @@
             "document"
         ],
         "editor.defaultFormatter": "vscode.html-language-features"
-    }
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
 }
