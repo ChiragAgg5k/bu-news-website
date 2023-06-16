@@ -1,34 +1,34 @@
-| Desktop View | Mobile View |
-|--------------|-------------|
-|![thumbnail_desktop](assets/thumbnail_desktop.png)|![thumbnail_mobile](assets/thumbnail_mobile.png)|  
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-> https://bu-news.netlify.app/
-> https://github.com/ChiragAgg5k/bu-news
+## Getting Started
 
-## About
+First, run the development server:
 
-BU News is a news website application built using pure HTML, CSS and JavaScript. It is a responsive website that can be viewed on both desktop and mobile devices. It is a multiple page application that allows the students to post their own news and articles based on current university events.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-The posts are administered by the admin of the website. The admin can add, edit and delete the posts. The posts are stored in a SQL database and are fetched from the database to be displayed on the website.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Technologies Used
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- HTML
-- CSS
-- JavaScript
-- MySQL
-- PHP
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Team Members
+## Learn More
 
-The project was built for a hackathon named HackEye conducted by ICosmic, Bennett University. The team members are:
+To learn more about Next.js, take a look at the following resources:
 
-- [Chirag Aggarwal](https://github.com/ChiragAgg5k)
-- [Aman Boora](https://github.com/boora-aman)
-- [Ishang Kansal](https://github.com/IshangKansal)
-- [Divesh Saini](https://github.com/divesh0001)
-- [Nikhil](https://github.com/n1kk-08)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Note
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-This project was part of our first ever hackthon as well as our first ever web development project. We are still learning and improving our skills. We would love to hear your feedback and suggestions.
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
