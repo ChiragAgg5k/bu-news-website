@@ -9,10 +9,13 @@ import Signup from "./signup";
 export default function SignupPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading1, setLoading1] = useState(false);
+	const [loading2, setLoading2] = useState(false);
 	const router = useRouter();
 
 	const handleForm = async (event: FormEvent) => {
 		event.preventDefault();
+		setLoading2(true);
 
 		const { result, error } = await Signup(email, password);
 
@@ -28,9 +31,7 @@ export default function SignupPage() {
 	return (
 		<div className="flex flex-col md:flex-row">
 			<Image
-				src={
-					"https://www.bennett.edu.in/wp-content/uploads/2022/07/Centre-for-Sustainability.webp"
-				}
+				src={"/background.jpg"}
 				alt="Picture of the University"
 				width={500}
 				height={500}
@@ -46,9 +47,13 @@ export default function SignupPage() {
 					<p className="mb-5">Already have an account? </p>
 
 					<button
+						disabled={loading1}
 						className="my-1 w-full rounded bg-white py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
-						onClick={() => router.push("/login")}>
-						Sign in here
+						onClick={() => {
+							setLoading1(true);
+							router.push("/login");
+						}}>
+						{loading1 ? "Loading..." : "Sign in here"}
 					</button>
 
 					<div className="mt-10">
@@ -64,9 +69,7 @@ export default function SignupPage() {
 			</div>
 			<div className="flex min-h-screen w-full flex-col bg-gray-200 md:w-2/3">
 				<Image
-					src={
-						"https://www.bennett.edu.in/wp-content/uploads/2022/07/Centre-for-Sustainability.webp"
-					}
+					src={"/background.jpg"}
 					alt="Picture of the University"
 					width={500}
 					height={500}
@@ -125,8 +128,9 @@ export default function SignupPage() {
 
 						<button
 							type="submit"
+							disabled={loading2}
 							className="my-1 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
-							Create Account
+							{loading2 ? "Loading..." : "Sign up"}
 						</button>
 
 						<div className="mt-8 text-center text-sm text-gray-700">

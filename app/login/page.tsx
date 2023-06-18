@@ -22,15 +22,13 @@ export default function LoginPage() {
 
 		// else successful
 		console.log(result);
-		return router.push("/admin");
+		return router.push("/home");
 	};
 
 	return (
 		<div className="flex flex-col md:flex-row">
 			<Image
-				src={
-					"https://www.bennett.edu.in/wp-content/uploads/2022/07/Centre-for-Sustainability.webp"
-				}
+				src={"/background.jpg"}
 				alt="Picture of the University"
 				width={500}
 				height={500}
@@ -56,9 +54,7 @@ export default function LoginPage() {
 			</div>
 			<div className="flex min-h-screen w-full flex-col bg-gray-200 md:w-2/3">
 				<Image
-					src={
-						"https://www.bennett.edu.in/wp-content/uploads/2022/07/Centre-for-Sustainability.webp"
-					}
+					src={"/background.jpg"}
 					alt="Picture of the University"
 					width={500}
 					height={500}
@@ -94,6 +90,7 @@ export default function LoginPage() {
 
 						<button
 							type="submit"
+							onClick={handleForm}
 							className="my-1 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
 							Login
 						</button>
