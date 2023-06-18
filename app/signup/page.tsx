@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
-import Link from "next/link";
 import Signup from "./signup";
 
 export default function SignupPage() {

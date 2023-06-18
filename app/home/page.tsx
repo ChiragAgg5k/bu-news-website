@@ -3,15 +3,16 @@ import firebase_app from "@/firebase/config";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { getDatabase, onValue, ref, set } from "firebase/database";
-import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
 	const auth = getAuth(firebase_app);
-	const router = useRouter();
-
-	if (!auth.currentUser) {
-		router.push("/signup");
-	}
+	const { push } = useRouter();
+	useEffect(() => {
+		if (!auth.currentUser) {
+			push("/signup");
+		}
+	}, [auth.currentUser, push]);
 
 	const user = auth.currentUser;
 	const db = getDatabase(firebase_app);
@@ -28,7 +29,7 @@ export default function Home() {
 			<button
 				onClick={() => {
 					auth.signOut().then(() => {
-						router.push("/signup");
+						push("/signup");
 					});
 				}}>
 				Logout
