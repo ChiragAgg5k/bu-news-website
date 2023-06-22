@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import Login from "./login";
+import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
 	const [loading1, setLoading1] = useState(false); // for login button
 	const [loading2, setLoading2] = useState(false); // for redirecting to signup
 	const router = useRouter();
@@ -27,6 +29,10 @@ export default function LoginPage() {
 		return router.push("/home");
 	};
 
+	const handleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
 	return (
 		<div className="flex flex-col md:flex-row">
 			<Image
@@ -36,7 +42,7 @@ export default function LoginPage() {
 				height={500}
 				className="pointer-events-none absolute z-10 h-full w-full object-cover opacity-5"
 			/>
-			<div className="relative z-0 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 text-white">
+			<div className="relative z-0 flex py-32 md:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 text-white">
 				<div className="z-20 text-center">
 					<h1 className="text-5xl font-bold">BU News</h1>
 					<h3 className="mb-8 text-lg">
@@ -82,16 +88,29 @@ export default function LoginPage() {
 							onChange={(event) => setEmail(event.target.value)}
 						/>
 
-						<input
-							type="password"
-							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
-							name="password"
-							placeholder="Password"
-							required
-							onChange={(event) =>
-								setPassword(event.target.value)
-							}
-						/>
+						<div className="flex justify-end items-center">
+							{showPassword ? (
+								<AiTwotoneEyeInvisible
+									className="absolute z-20 text-2xl mr-3"
+									onClick={() => handleShowPassword()}
+								/>
+							) : (
+								<AiFillEye
+									className="absolute z-20 text-2xl mr-3"
+									onClick={() => handleShowPassword()}
+								/>
+							)}
+							<input
+								type={showPassword ? "text" : "password"}
+								className="block w-full rounded border border-gray-200 p-3 hover:border-red-300"
+								name="password"
+								placeholder="Password"
+								required
+								onChange={(event) =>
+									setPassword(event.target.value)
+								}
+							/>
+						</div>
 
 						<button
 							type="submit"
@@ -99,7 +118,7 @@ export default function LoginPage() {
 								setLoading1(true);
 								handleForm;
 							}}
-							className="my-1 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
+							className="my-1 mt-4 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
 							{loading1 ? "Loading..." : "Login"}
 						</button>
 

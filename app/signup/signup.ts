@@ -1,7 +1,7 @@
 import { getDatabase, ref, set } from "firebase/database";
 import firebase_app from "../../firebase/config";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { SignupPageProps } from "./page";
+import { SignUpPageProps } from "./page";
 
 const auth = getAuth(firebase_app);
 const db = getDatabase(firebase_app);
@@ -21,7 +21,7 @@ function writeUserData(
 	});
 }
 
-export default async function Signup(props: SignupPageProps) {
+export default async function Signup(props: SignUpPageProps) {
 	let result = null,
 		error = null;
 

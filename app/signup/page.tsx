@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Signup from "./signup";
+import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 
-export interface SignupPageProps {
+export interface SignUpPageProps {
 	email: string;
 	password: string;
 	name: string;
@@ -14,8 +15,8 @@ export interface SignupPageProps {
 	admin: boolean;
 }
 
-export default function SignupPage() {
-	const [signup, setSignup] = useState<SignupPageProps>({
+export default function SignUpPage() {
+	const [signUp, setSignUp] = useState<SignUpPageProps>({
 		email: "",
 		password: "",
 		name: "",
@@ -25,13 +26,14 @@ export default function SignupPage() {
 	});
 	const [loading1, setLoading1] = useState(false);
 	const [loading2, setLoading2] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 	const router = useRouter();
 
 	const handleForm = async (event: FormEvent) => {
 		event.preventDefault();
 		setLoading2(true);
 
-		const { result, error } = await Signup(signup);
+		const { result, error } = await Signup(signUp);
 
 		if (error) {
 			alert(error);
@@ -43,6 +45,10 @@ export default function SignupPage() {
 		return router.push("/home");
 	};
 
+	const handleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
 	return (
 		<div className="flex flex-col md:flex-row">
 			<Image
@@ -52,7 +58,7 @@ export default function SignupPage() {
 				height={500}
 				className="pointer-events-none absolute z-10 h-full w-full object-cover opacity-5"
 			/>
-			<div className="relative z-0 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 text-white">
+			<div className="relative z-0 flex py-32 md:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 text-white">
 				<div className="z-20 text-center">
 					<h1 className="text-5xl font-bold">BU News</h1>
 					<h3 className="mb-8 text-lg">
@@ -103,8 +109,8 @@ export default function SignupPage() {
 							name="fullname"
 							placeholder="Full Name*"
 							onChange={(event) => {
-								setSignup({
-									...signup,
+								setSignUp({
+									...signUp,
 									name: event.target.value
 								});
 							}}
@@ -117,8 +123,8 @@ export default function SignupPage() {
 							name="email"
 							placeholder="Email*"
 							onChange={(event) => {
-								setSignup({
-									...signup,
+								setSignUp({
+									...signUp,
 									email: event.target.value
 								});
 							}}
@@ -130,8 +136,8 @@ export default function SignupPage() {
 							name="contact"
 							placeholder="Contact (+91)"
 							onChange={(event) => {
-								setSignup({
-									...signup,
+								setSignUp({
+									...signUp,
 									phoneNo: event.target.value
 								});
 							}}
@@ -143,31 +149,45 @@ export default function SignupPage() {
 							name="city"
 							placeholder="City or Zip Code"
 							onChange={(event) => {
-								setSignup({
-									...signup,
+								setSignUp({
+									...signUp,
 									city: event.target.value
 								});
 							}}
 						/>
 
-						<input
-							type="password"
-							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
-							name="password"
-							placeholder="Password*"
-							required
-							onChange={(event) => {
-								setSignup({
-									...signup,
-									password: event.target.value
-								});
-							}}
-						/>
+						<div className="flex justify-end items-center">
+							{showPassword ? (
+								<AiTwotoneEyeInvisible
+									className="absolute z-20 text-2xl mr-3"
+									onClick={() => handleShowPassword()}
+								/>
+							) : (
+								<AiFillEye
+									className="absolute z-20 text-2xl mr-3"
+									onClick={() => handleShowPassword()}
+								/>
+							)}
+							<input
+								type={showPassword ? "text" : "password"}
+								id="password_input"
+								className="block w-full relative rounded border border-gray-200 p-3 hover:border-red-300"
+								name="password"
+								placeholder="Password*"
+								required
+								onChange={(event) => {
+									setSignUp({
+										...signUp,
+										password: event.target.value
+									});
+								}}
+							/>
+						</div>
 
 						<button
 							type="submit"
 							disabled={loading2}
-							className="my-1 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
+							className="my-1 mt-4 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
 							{loading2 ? "Loading..." : "Sign up"}
 						</button>
 
