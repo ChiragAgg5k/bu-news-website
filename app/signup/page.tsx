@@ -5,9 +5,24 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Signup from "./signup";
 
+export interface SignupPageProps {
+	email: string;
+	password: string;
+	name: string;
+	phoneNo: string;
+	city: string;
+	admin: boolean;
+}
+
 export default function SignupPage() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [signup, setSignup] = useState<SignupPageProps>({
+		email: "",
+		password: "",
+		name: "",
+		phoneNo: "",
+		city: "",
+		admin: false
+	});
 	const [loading1, setLoading1] = useState(false);
 	const [loading2, setLoading2] = useState(false);
 	const router = useRouter();
@@ -16,15 +31,16 @@ export default function SignupPage() {
 		event.preventDefault();
 		setLoading2(true);
 
-		const { result, error } = await Signup(email, password);
+		const { result, error } = await Signup(signup);
 
 		if (error) {
-			return console.log(error);
+			alert(error);
+			return setLoading2(false);
 		}
 
 		// else successful
 		console.log(result);
-		return router.push("/admin");
+		return router.push("/home");
 	};
 
 	return (
@@ -85,7 +101,13 @@ export default function SignupPage() {
 							type="text"
 							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
 							name="fullname"
-							placeholder="Full Name"
+							placeholder="Full Name*"
+							onChange={(event) => {
+								setSignup({
+									...signup,
+									name: event.target.value
+								});
+							}}
 							required
 						/>
 
@@ -93,17 +115,26 @@ export default function SignupPage() {
 							type="text"
 							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
 							name="email"
-							placeholder="Email"
-							required
-							onChange={(event) => setEmail(event.target.value)}
+							placeholder="Email*"
+							onChange={(event) => {
+								setSignup({
+									...signup,
+									email: event.target.value
+								});
+							}}
 						/>
 
 						<input
-							type="text"
+							type="tel"
 							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
 							name="contact"
-							placeholder="Contact"
-							required
+							placeholder="Contact (+91)"
+							onChange={(event) => {
+								setSignup({
+									...signup,
+									phoneNo: event.target.value
+								});
+							}}
 						/>
 
 						<input
@@ -111,18 +142,26 @@ export default function SignupPage() {
 							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
 							name="city"
 							placeholder="City or Zip Code"
-							required
+							onChange={(event) => {
+								setSignup({
+									...signup,
+									city: event.target.value
+								});
+							}}
 						/>
 
 						<input
 							type="password"
 							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
 							name="password"
-							placeholder="Password"
+							placeholder="Password*"
 							required
-							onChange={(event) =>
-								setPassword(event.target.value)
-							}
+							onChange={(event) => {
+								setSignup({
+									...signup,
+									password: event.target.value
+								});
+							}}
 						/>
 
 						<button

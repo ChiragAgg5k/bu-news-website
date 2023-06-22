@@ -9,6 +9,8 @@ import Login from "./login";
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading1, setLoading1] = useState(false); // for login button
+	const [loading2, setLoading2] = useState(false); // for redirecting to signup
 	const router = useRouter();
 
 	const handleForm = async (event: FormEvent) => {
@@ -47,8 +49,11 @@ export default function LoginPage() {
 
 					<button
 						className="my-1 px-16 rounded bg-white py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
-						onClick={() => router.push("/signup")}>
-						Sign up here
+						onClick={() => {
+							router.push("/signup");
+							setLoading2(true);
+						}}>
+						{loading2 ? "Loading..." : "Sign up here"}
 					</button>
 				</div>
 			</div>
@@ -90,9 +95,12 @@ export default function LoginPage() {
 
 						<button
 							type="submit"
-							onClick={handleForm}
+							onClick={() => {
+								setLoading1(true);
+								handleForm;
+							}}
 							className="my-1 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
-							Login
+							{loading1 ? "Loading..." : "Login"}
 						</button>
 
 						<div className="mt-8 text-center text-sm text-gray-700">
