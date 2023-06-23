@@ -25,23 +25,26 @@ export default function SignUpPage() {
 		admin: false
 	});
 	const [loading1, setLoading1] = useState(false);
-	const [loading2, setLoading2] = useState(false);
+	const [loadingText, setLoadingText] = useState("Sign Up");
 	const [showPassword, setShowPassword] = useState(false);
 	const router = useRouter();
 
 	const handleForm = async (event: FormEvent) => {
 		event.preventDefault();
-		setLoading2(true);
+		setLoadingText("Signing Up...");
 
 		const { result, error } = await Signup(signUp);
 
 		if (error) {
-			alert(error);
-			return setLoading2(false);
+			setLoadingText("Signup Failed");
+			setTimeout(() => {
+				setLoadingText("Sign Up");
+			}, 1000);
+			return;
 		}
 
 		// else successful
-		console.log(result);
+		setLoadingText("Sign Up Successful");
 		return router.push("/home");
 	};
 
@@ -186,24 +189,18 @@ export default function SignUpPage() {
 
 						<button
 							type="submit"
-							disabled={loading2}
 							className="my-1 mt-4 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
-							{loading2 ? "Loading..." : "Sign up"}
+							{loadingText}
 						</button>
 
 						<div className="mt-8 text-center text-sm text-gray-700">
-							By signing up, you agree to the{" "}
+							Using android? Download the app instead, from{" "}
 							<a
 								className="border-b border-gray-700 text-gray-700 no-underline"
-								href="#">
-								Terms of Service
+								target="_blank"
+								href="https://play.google.com/store/apps/details?id=com.chiragagg5k.bu_news_android">
+								Play Store
 							</a>{" "}
-							and{" "}
-							<a
-								className="border-b border-gray-700 text-gray-700 no-underline"
-								href="#">
-								Privacy Policy
-							</a>
 						</div>
 					</form>
 				</div>

@@ -11,21 +11,25 @@ export default function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-	const [loading1, setLoading1] = useState(false); // for login button
+	const [loadingText, setLoadingText] = useState("Login"); // for login button
 	const [loading2, setLoading2] = useState(false); // for redirecting to signup
 	const router = useRouter();
 
 	const handleForm = async (event: FormEvent) => {
 		event.preventDefault();
+		setLoadingText("Logging In...");
 
 		const { result, error } = await Login(email, password);
 
 		if (error) {
+			setLoadingText("Login Failed");
+			setTimeout(() => {
+				setLoadingText("Login");
+			}, 1000);
 			return console.log(error);
 		}
 
-		// else successful
-		console.log(result);
+		setLoadingText("Login Successful");
 		return router.push("/home");
 	};
 
@@ -114,12 +118,8 @@ export default function LoginPage() {
 
 						<button
 							type="submit"
-							onClick={() => {
-								setLoading1(true);
-								handleForm;
-							}}
 							className="my-1 mt-4 w-full rounded bg-red-500 py-3 text-center text-white hover:bg-red-600 focus:outline-none">
-							{loading1 ? "Loading..." : "Login"}
+							{loadingText}
 						</button>
 
 						<div className="mt-8 text-center text-sm text-gray-700">
