@@ -1,14 +1,43 @@
+import { getDatabase, ref, set } from "firebase/database";
 import firebase_app from "../../firebase/config";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { SignUpPageProps } from "./page";
 
 const auth = getAuth(firebase_app);
+const db = getDatabase(firebase_app);
 
-export default async function Signup(email: string, password: string) {
+function writeUserData(
+	userId: string,
+	name: string,
+	phoneNo: string,
+	city: string,
+	admin: boolean
+) {
+	set(ref(db, "users/" + userId), {
+		admin: admin,
+		name: name,
+		city: city,
+		phoneNo: phoneNo
+	});
+}
+
+export default async function Signup(props: SignUpPageProps) {
 	let result = null,
 		error = null;
 
 	try {
-		result = await createUserWithEmailAndPassword(auth, email, password);
+		result = await createUserWithEmailAndPassword(
+			auth,
+			props.email,
+			props.password
+		);
+		writeUserData(
+			result.user.uid,
+			props.name,
+			props.phoneNo,
+			props.city,
+			props.admin
+		);
 	} catch (e) {
 		error = e;
 	}
