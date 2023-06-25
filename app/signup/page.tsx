@@ -197,6 +197,7 @@ export default function SignUpPage() {
 							Using android? Download the app instead, from{" "}
 							<a
 								className="border-b border-gray-700 text-gray-700 no-underline"
+								rel="noreferrer"
 								target="_blank"
 								href="https://play.google.com/store/apps/details?id=com.chiragagg5k.bu_news_android">
 								Play Store
