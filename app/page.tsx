@@ -3,6 +3,7 @@ import firebase_app from "@/firebase/config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { use, useEffect } from "react";
+import ReactLoading from "react-loading";
 
 export default function Home() {
 	const router = useRouter();
@@ -18,5 +19,9 @@ export default function Home() {
 		});
 	}, [auth, router]);
 
-	return <main></main>;
+	return (
+		<div className="flex h-screen items-center justify-center">
+			<ReactLoading type="bars" color="#000000" height={100} width={50} />
+		</div>
+	);
 }

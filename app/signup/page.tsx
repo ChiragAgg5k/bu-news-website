@@ -61,7 +61,7 @@ export default function SignUpPage() {
 				height={500}
 				className="pointer-events-none absolute z-10 h-full w-full object-cover opacity-5"
 			/>
-			<div className="relative z-0 flex py-32 md:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 text-white">
+			<div className="relative z-0 flex w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 py-32 text-white md:min-h-screen">
 				<div className="z-20 text-center">
 					<h1 className="text-5xl font-bold">BU News</h1>
 					<h3 className="mb-8 text-lg">
@@ -159,22 +159,22 @@ export default function SignUpPage() {
 							}}
 						/>
 
-						<div className="flex justify-end items-center">
+						<div className="flex items-center justify-end">
 							{showPassword ? (
 								<AiTwotoneEyeInvisible
-									className="absolute z-20 text-2xl mr-3"
+									className="absolute z-20 mr-3 text-2xl"
 									onClick={() => handleShowPassword()}
 								/>
 							) : (
 								<AiFillEye
-									className="absolute z-20 text-2xl mr-3"
+									className="absolute z-20 mr-3 text-2xl"
 									onClick={() => handleShowPassword()}
 								/>
 							)}
 							<input
 								type={showPassword ? "text" : "password"}
 								id="password_input"
-								className="block w-full relative rounded border border-gray-200 p-3 hover:border-red-300"
+								className="relative block w-full rounded border border-gray-200 p-3 hover:border-red-300"
 								name="password"
 								placeholder="Password*"
 								required
@@ -197,6 +197,7 @@ export default function SignUpPage() {
 							Using android? Download the app instead, from{" "}
 							<a
 								className="border-b border-gray-700 text-gray-700 no-underline"
+								rel="noreferrer"
 								target="_blank"
 								href="https://play.google.com/store/apps/details?id=com.chiragagg5k.bu_news_android">
 								Play Store

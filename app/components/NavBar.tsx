@@ -36,11 +36,11 @@ export default function NavBar() {
 					<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-5xl text-white" />
 				</div>
 			</div>
-			<nav className="sticky top-0">
+			<nav className="sticky top-0 z-20">
 				<ul className="flex justify-between bg-sky-700 py-4 text-white">
 					<h3
 						id="subHeading"
-						className="hidden sm:invisible sm:inline-block ml-5 text-xl font-bold">
+						className="ml-5 hidden text-xl font-bold sm:invisible sm:inline-block">
 						BU NEWS
 					</h3>
 					<span className="flex justify-center sm:justify-end">
