@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ["openweathermap.org"]
+		domains: ["openweathermap.org", "firebasestorage.googleapis.com"]
 	},
 	reactStrictMode: true
 };

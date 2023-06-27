@@ -2,7 +2,7 @@ import Head from "next/head";
 import "./globals.css";
 import { Raleway } from "next/font/google";
 
-const inter = Raleway({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"] });
 
 export const metadata = {
 	title: "BU News",
@@ -16,7 +16,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={true}>
 			<head>
 				<link
 					rel="apple-touch-icon"
@@ -37,7 +37,9 @@ export default function RootLayout({
 				/>
 				<link rel="manifest" href="/site.webmanifest" />
 			</head>
-			<body className={inter.className}>{children}</body>
+			<body className={raleway.className} suppressHydrationWarning={true}>
+				{children}
+			</body>
 		</html>
 	);
 }

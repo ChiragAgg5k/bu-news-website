@@ -46,7 +46,7 @@ export default function LoginPage() {
 				height={500}
 				className="pointer-events-none absolute z-10 h-full w-full object-cover opacity-5"
 			/>
-			<div className="relative z-0 flex py-32 md:min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 text-white">
+			<div className="relative z-0 flex w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 py-32 text-white md:min-h-screen">
 				<div className="z-20 text-center">
 					<h1 className="text-5xl font-bold">BU News</h1>
 					<h3 className="mb-8 text-lg">
@@ -58,7 +58,7 @@ export default function LoginPage() {
 					</p>
 
 					<button
-						className="my-1 px-16 rounded bg-white py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
+						className="my-1 rounded bg-white px-16 py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
 						onClick={() => {
 							router.push("/signup");
 							setLoading2(true);
@@ -92,15 +92,15 @@ export default function LoginPage() {
 							onChange={(event) => setEmail(event.target.value)}
 						/>
 
-						<div className="flex justify-end items-center">
+						<div className="flex items-center justify-end">
 							{showPassword ? (
 								<AiTwotoneEyeInvisible
-									className="absolute z-20 text-2xl mr-3"
+									className="absolute z-20 mr-3 text-2xl"
 									onClick={() => handleShowPassword()}
 								/>
 							) : (
 								<AiFillEye
-									className="absolute z-20 text-2xl mr-3"
+									className="absolute z-20 mr-3 text-2xl"
 									onClick={() => handleShowPassword()}
 								/>
 							)}
