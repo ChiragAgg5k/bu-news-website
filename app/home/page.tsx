@@ -251,18 +251,22 @@ export default function Home() {
 							</div>
 						</div>
 					) : (
-						<p className="my-auto">Fetching News</p>
+						<p className="flex h-full items-center justify-center">
+							Loading...
+						</p>
 					)}
 				</div>
 			</div>
-			<p className="mt-20">Work in progress...</p>
-			<button
-				className="my-1 rounded bg-sky-700 px-16 py-3 text-center text-white hover:bg-sky-600 focus:outline-none"
-				onClick={() => {
-					logout();
-				}}>
-				Logout
-			</button>
+			<div className="mt-20 flex flex-col items-center justify-center">
+				<p>Work in progress...</p>
+				<button
+					className="my-1 rounded bg-sky-700 px-16 py-3 text-center text-white hover:bg-sky-600 focus:outline-none"
+					onClick={() => {
+						logout();
+					}}>
+					Logout
+				</button>
+			</div>
 		</main>
 	);
 }
