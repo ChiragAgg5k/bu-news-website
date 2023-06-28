@@ -5,15 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import Signup from "./signup";
 import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
-
-export interface SignUpPageProps {
-	email: string;
-	password: string;
-	name: string;
-	phoneNo: string;
-	city: string;
-	admin: boolean;
-}
+import { SignUpPageProps } from "../types";
 
 export default function SignUpPage() {
 	const [signUp, setSignUp] = useState<SignUpPageProps>({

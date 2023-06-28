@@ -2,36 +2,14 @@
 import firebase_app from "@/firebase/config";
 import { User, getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { get, getDatabase, onValue, ref, set } from "firebase/database";
-import { use, useEffect, useState } from "react";
+import { getDatabase, onValue, ref } from "firebase/database";
+import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import Image from "next/image";
-import { ImArrowRight2, ImSpinner3 } from "react-icons/im";
-import Link from "next/link";
-
-interface UserDetail {
-	name: string;
-	phoneNo: string;
-	city: string | undefined;
-	admin: boolean;
-}
-
-interface News {
-	authorized: boolean;
-	category: string;
-	dateInMilliseconds: number;
-	mImageUrl: string;
-	newsDescription: string;
-	newsHeading: string;
-	promoted: boolean;
-	username: string;
-}
-
-interface Weather {
-	temp: number;
-	description: string;
-	icon: string;
-}
+import { ImSpinner3 } from "react-icons/im";
+import PromotedNews from "./PromotedNews";
+import { News, NewsCategory, UserDetail, Weather } from "../types";
+import SubscribedNews from "./SubscribedNews";
 
 function logout() {
 	const auth = getAuth(firebase_app);
@@ -61,7 +39,13 @@ export default function Home() {
 		admin: false
 	});
 
+	const [categories, setCategories] = useState<NewsCategory | undefined>(
+		undefined
+	);
 	const [promotedNews, setPromotedNews] = useState<News[]>([]);
+	const [subscribedNews, setSubscribedNews] = useState<News[] | undefined>(
+		undefined
+	);
 
 	useEffect(() => {
 		const db = getDatabase(firebase_app);
@@ -70,20 +54,49 @@ export default function Home() {
 
 		onValue(userRef, (snapshot) => {
 			const data = snapshot.val();
+			if (data) {
+				setCategories(data.categories);
+			}
 			setUserDetail(data);
 		});
 
 		onValue(uploadRef, (snapshot) => {
 			const data = snapshot.val();
-			const news: News[] = [];
+
+			const promoted: News[] = [];
 			for (const key in data) {
-				if (data[key].authorized && data[key].promoted) {
-					news.push(data[key]);
+				if (data[key].authorized) {
+					if (data[key].promoted) promoted.push(data[key]);
 				}
 			}
-			setPromotedNews(news);
+
+			promoted.reverse();
+			setPromotedNews(promoted);
 		});
 	}, [user]);
+
+	useEffect(() => {
+		if (categories === undefined) return;
+
+		const db = getDatabase(firebase_app);
+		const uploadRef = ref(db, `uploads/`);
+
+		onValue(uploadRef, (snapshot) => {
+			const subscribed: News[] = [];
+			const data = snapshot.val();
+
+			for (const key in data) {
+				if (data[key].authorized) {
+					if (categories[data[key].category as keyof NewsCategory]) {
+						subscribed.push(data[key]);
+					}
+				}
+			}
+
+			subscribed.reverse();
+			setSubscribedNews(subscribed);
+		});
+	}, [categories]);
 
 	// greeting = {"Good Morning", "Good Afternoon", "Good Evening", "Good Night"}
 	const greeting = () => {
@@ -135,15 +148,6 @@ export default function Home() {
 			});
 	}, [userDetail]);
 
-	const [activeNewsIndex, setActiveNewsIndex] = useState<number>(0);
-	const [activeNews, setActiveNews] = useState<News | null>(null);
-
-	useEffect(() => {
-		if (!activeNews && promotedNews.length > 0) {
-			setActiveNews(promotedNews[0]);
-		}
-	}, [activeNews, promotedNews]);
-
 	return (
 		<main>
 			<NavBar />
@@ -152,11 +156,13 @@ export default function Home() {
 				<div className="w-full p-6 lg:p-8 lg:pr-0">
 					<div className="flex justify-between">
 						<div>
-							<h2 className="text-4xl font-bold">{greeting()}</h2>
-							<h3 className="text-3xl font-bold">
+							<h2 className="text-3xl font-bold sm:text-4xl">
+								{greeting()}
+							</h2>
+							<h3 className="text-2xl font-bold sm:text-3xl">
 								{userDetail?.name.split(" ")[0]}
 							</h3>
-							<p>{date()}</p>
+							<p className="text-lg">{date()}</p>
 						</div>
 						<div className="mr-8 lg:mr-0">
 							{weather ? (
@@ -169,7 +175,7 @@ export default function Home() {
 										className="h-16 w-16"
 									/>
 									<div className="ml-4">
-										<p className="text-3xl font-bold">
+										<p className="text-2xl font-bold sm:text-3xl">
 											{weather.temp}°C
 										</p>
 										<p>{weather.description}</p>
@@ -182,81 +188,17 @@ export default function Home() {
 							)}
 						</div>
 					</div>
-					<div className="mt-4">
+					<div className="mt-8">
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Veritatis, facilis reiciendis fugit cumque
-							aliquam quam quibusdam, itaque dicta accusamus nulla
-							amet facere! Nulla molestias veniam ratione
-							laudantium tempore excepturi debitis?
+							Welcome to BU News, the pulse of university life and
+							the unofficial news source for the students,
+							faculty, and staff of Bennett University.
 						</p>
 					</div>
 				</div>
-				<div className="w-full">
-					{activeNews ? (
-						<div className="relative m-4 rounded-xl p-4 hover:bg-gray-200">
-							<div className="flex flex-col sm:flex-row">
-								<Image
-									src={activeNews.mImageUrl}
-									width={500}
-									height={300}
-									alt="news image"
-									className="object-fit mx-auto h-52 w-auto rounded-lg sm:w-full"
-								/>
-								<div className="p-5">
-									<h4 className="mb-2 font-bold">
-										{activeNews.newsHeading}
-									</h4>
-									<p className="mb-4">
-										{activeNews.newsDescription.length >
-										200 ? (
-											<>
-												{activeNews.newsDescription.substring(
-													0,
-													200
-												)}
-												...
-											</>
-										) : (
-											activeNews.newsDescription
-										)}
-									</p>
-									<Link
-										href="#"
-										className="font-light hover:underline">
-										Continue reading
-									</Link>
-									<button
-										onClick={() => {
-											if (
-												activeNewsIndex <
-												promotedNews.length - 1
-											) {
-												setActiveNewsIndex(
-													activeNewsIndex + 1
-												);
-												setActiveNews(
-													promotedNews[
-														activeNewsIndex + 1
-													]
-												);
-											} else {
-												setActiveNewsIndex(0);
-												setActiveNews(promotedNews[0]);
-											}
-										}}>
-										<ImArrowRight2 className="absolute right-0 mr-4 text-2xl" />
-									</button>
-								</div>
-							</div>
-						</div>
-					) : (
-						<p className="flex h-full items-center justify-center">
-							Loading...
-						</p>
-					)}
-				</div>
+				<PromotedNews promotedNews={promotedNews} />
 			</div>
+			<SubscribedNews subscribedNews={subscribedNews} />
 			<div className="mt-20 flex flex-col items-center justify-center">
 				<p>Work in progress...</p>
 				<button

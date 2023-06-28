@@ -24,7 +24,7 @@ export default function NavBar() {
 		<>
 			<div className="flex justify-between" id="upperNav">
 				<div className="flex items-center py-6">
-					<h2 className="ml-6 mr-2 inline-block text-4xl font-bold text-black">
+					<h2 className="ml-6 mr-2 inline-block text-3xl font-bold text-black sm:text-4xl">
 						BU NEWS
 					</h2>
 					<h4 className="hidden font-bold text-black sm:inline-block">
@@ -33,7 +33,7 @@ export default function NavBar() {
 					</h4>
 				</div>
 				<div className="flex items-center">
-					<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-5xl text-white" />
+					<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-4xl text-white sm:text-5xl" />
 				</div>
 			</div>
 			<nav className="sticky top-0 z-20">
@@ -43,31 +43,31 @@ export default function NavBar() {
 						className="ml-5 hidden text-xl font-bold sm:invisible sm:inline-block">
 						BU NEWS
 					</h3>
-					<span className="flex justify-center sm:justify-end">
+					<div className="flex justify-center text-lg text-white sm:justify-end">
 						<a
 							href="#"
-							className="group mx-4 text-lg text-white transition duration-300">
+							className="group mx-3 transition duration-300 sm:mx-4">
 							Home
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</a>
 						<a
 							href="#"
-							className="group mx-4 text-lg text-white transition duration-300">
+							className="group mx-3 transition duration-300 sm:mx-4">
 							Headlines
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</a>
 						<a
 							href="#"
-							className="group mx-4 text-lg text-white transition duration-300">
+							className="group mx-3 transition duration-300 sm:mx-4">
 							Events
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</a>
 						<a
 							href="#"
-							className="group mx-4 text-lg text-white transition duration-300 before:content-['L_&_F'] sm:before:content-['Lost_And_Found']">
+							className="group mx-3 transition duration-300 before:content-['L_&_F'] sm:mx-4 sm:before:content-['Lost_And_Found']">
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</a>
-					</span>
+					</div>
 				</ul>
 			</nav>
 		</>
