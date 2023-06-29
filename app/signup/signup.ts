@@ -1,6 +1,10 @@
 import { getDatabase, ref, set } from "firebase/database";
 import firebase_app from "../../firebase/config";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	getAuth,
+	signInAnonymously
+} from "firebase/auth";
 import { SignUpPageProps } from "../types";
 
 const auth = getAuth(firebase_app);
@@ -21,7 +25,17 @@ function writeUserData(
 	});
 }
 
-export default async function Signup(props: SignUpPageProps) {
+export async function SignupAnonymously() {
+	try {
+		await signInAnonymously(auth);
+	} catch (e) {
+		console.log(e);
+	}
+
+	return;
+}
+
+export async function Signup(props: SignUpPageProps) {
 	let result = null,
 		error = null;
 

@@ -18,19 +18,19 @@ function logout() {
 
 export default function Home() {
 	const [user, setUser] = useState<User | null>(null);
-	const { push } = useRouter();
+	const router = useRouter();
 
 	useEffect(() => {
 		const auth = getAuth(firebase_app);
 
 		auth.onAuthStateChanged((user) => {
 			if (!user) {
-				push("/signup");
+				router.push("/signup");
 			} else {
 				setUser(user);
 			}
 		});
-	}, [push]);
+	}, [router]);
 
 	const [userDetail, setUserDetail] = useState<UserDetail | null>({
 		name: "...",
@@ -52,13 +52,30 @@ export default function Home() {
 		const userRef = ref(db, `users/${user?.uid}`);
 		const uploadRef = ref(db, `uploads/`);
 
-		onValue(userRef, (snapshot) => {
-			const data = snapshot.val();
-			if (data) {
-				setCategories(data.categories);
-			}
-			setUserDetail(data);
-		});
+		if (!user) return;
+
+		if (user?.isAnonymous) {
+			setUserDetail({
+				name: "Guest",
+				phoneNo: "",
+				city: "",
+				admin: false
+			});
+			setCategories({
+				"Clubs Related": true,
+				Event: true,
+				General: true,
+				Sports: true
+			});
+		} else {
+			onValue(userRef, (snapshot) => {
+				const data = snapshot.val();
+				if (data) {
+					setCategories(data.categories);
+				}
+				setUserDetail(data);
+			});
+		}
 
 		onValue(uploadRef, (snapshot) => {
 			const data = snapshot.val();
