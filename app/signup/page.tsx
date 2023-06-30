@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
-import Signup from "./signup";
+import { Signup, SignupAnonymously } from "./signup";
 import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import { SignUpPageProps } from "../types";
 
@@ -18,6 +18,7 @@ export default function SignUpPage() {
 	});
 	const [loading1, setLoading1] = useState(false);
 	const [loadingText, setLoadingText] = useState("Sign Up");
+	const [guestLoading, setGuestLoading] = useState("Click here");
 	const [showPassword, setShowPassword] = useState(false);
 	const router = useRouter();
 
@@ -25,7 +26,7 @@ export default function SignUpPage() {
 		event.preventDefault();
 		setLoadingText("Signing Up...");
 
-		const { result, error } = await Signup(signUp);
+		const { error } = await Signup(signUp);
 
 		if (error) {
 			setLoadingText("Signup Failed");
@@ -42,6 +43,12 @@ export default function SignUpPage() {
 
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
+	};
+
+	const handleGuestLogin = async () => {
+		setGuestLoading("Loading...");
+		await SignupAnonymously();
+		router.push("/home");
 	};
 
 	return (
@@ -75,9 +82,13 @@ export default function SignUpPage() {
 					<div className="mt-10">
 						<p className="mr-1 inline-block">Or</p>
 
-						<a href="" className="inline-block border-b">
-							click here
-						</a>
+						<p
+							onClick={() => {
+								handleGuestLogin();
+							}}
+							className="inline-block border-b hover:cursor-pointer hover:border-b-2">
+							{guestLoading}
+						</p>
 
 						<p className="ml-1 inline-block">to login as a guest</p>
 					</div>

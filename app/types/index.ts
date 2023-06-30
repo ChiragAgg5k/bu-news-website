@@ -32,7 +32,7 @@ export interface Weather {
 }
 
 export interface NewsCategory {
-	ClubsRelated: boolean;
+	"Clubs Related": boolean;
 	Event: boolean;
 	General: boolean;
 	Sports: boolean;
