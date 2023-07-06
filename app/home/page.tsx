@@ -1,55 +1,55 @@
-'use client'
-import firebase_app from '@/firebase/config'
-import { User, getAuth } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
-import { getDatabase, onValue, ref } from 'firebase/database'
-import { useEffect, useState } from 'react'
-import NavBar from '../components/NavBar'
-import Image from 'next/image'
-import { ImSpinner3 } from 'react-icons/im'
-import PromotedNews from './PromotedNews'
-import { News, NewsCategory, UserDetail, Weather } from '../types'
-import SubscribedNews from './SubscribedNews'
+'use client';
+import firebase_app from '@/firebase/config';
+import { User, getAuth } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import { getDatabase, onValue, ref } from 'firebase/database';
+import { useEffect, useState } from 'react';
+import NavBar from '../components/NavBar';
+import Image from 'next/image';
+import PromotedNews from './PromotedNews';
+import { News, NewsCategory, UserDetail, Weather } from '../types';
+import SubscribedNews from './SubscribedNews';
+import ReactLoading from 'react-loading';
 
 function logout() {
-	const auth = getAuth(firebase_app)
-	auth.signOut()
+	const auth = getAuth(firebase_app);
+	auth.signOut();
 }
 
 export default function Home() {
-	const [user, setUser] = useState<User | null>(null)
-	const router = useRouter()
+	const [user, setUser] = useState<User | null>(null);
+	const router = useRouter();
 
 	useEffect(() => {
-		const auth = getAuth(firebase_app)
+		const auth = getAuth(firebase_app);
 
 		auth.onAuthStateChanged((user) => {
 			if (!user) {
-				router.push('/signup')
+				router.push('/signup');
 			} else {
-				setUser(user)
+				setUser(user);
 			}
-		})
-	}, [router])
+		});
+	}, [router]);
 
 	const [userDetail, setUserDetail] = useState<UserDetail | null>({
 		name: '...',
 		phoneNo: '',
 		city: undefined,
 		admin: false,
-	})
+	});
 
-	const [categories, setCategories] = useState<NewsCategory | undefined>(undefined)
-	const [allNews, setAllNews] = useState<News[]>([])
-	const [promotedNews, setPromotedNews] = useState<News[]>([])
-	const [subscribedNews, setSubscribedNews] = useState<News[] | undefined>(undefined)
+	const [categories, setCategories] = useState<NewsCategory | undefined>(undefined);
+	const [allNews, setAllNews] = useState<News[]>([]);
+	const [promotedNews, setPromotedNews] = useState<News[]>([]);
+	const [subscribedNews, setSubscribedNews] = useState<News[] | undefined>(undefined);
 
 	useEffect(() => {
-		const db = getDatabase(firebase_app)
-		const userRef = ref(db, `users/${user?.uid}`)
-		const uploadRef = ref(db, `uploads/`)
+		const db = getDatabase(firebase_app);
+		const userRef = ref(db, `users/${user?.uid}`);
+		const uploadRef = ref(db, `uploads/`);
 
-		if (!user) return
+		if (!user) return;
 
 		if (user?.isAnonymous) {
 			setUserDetail({
@@ -57,84 +57,84 @@ export default function Home() {
 				phoneNo: '',
 				city: '',
 				admin: false,
-			})
+			});
 			setCategories({
 				'Clubs Related': false,
 				Event: false,
 				General: false,
 				Sports: false,
-			})
+			});
 		} else {
 			onValue(userRef, (snapshot) => {
-				const data = snapshot.val()
+				const data = snapshot.val();
 				if (data) {
-					setCategories(data.categories)
+					setCategories(data.categories);
 				}
-				setUserDetail(data)
-			})
+				setUserDetail(data);
+			});
 		}
 
 		onValue(uploadRef, (snapshot) => {
-			const data = snapshot.val()
+			const data = snapshot.val();
 
-			const all: News[] = []
-			const promoted: News[] = []
+			const all: News[] = [];
+			const promoted: News[] = [];
 			for (const key in data) {
 				if (data[key].authorized) {
-					data[key]['id'] = key
+					data[key]['id'] = key;
 					if (data[key].promoted) {
-						promoted.push(data[key])
+						promoted.push(data[key]);
 					}
-					all.push(data[key])
+					all.push(data[key]);
 				}
 			}
 
-			promoted.reverse()
-			setPromotedNews(promoted)
-			setAllNews(all)
-		})
-	}, [user])
+			promoted.reverse();
+			setPromotedNews(promoted);
+			setAllNews(all);
+		});
+	}, [user]);
 
 	useEffect(() => {
-		if (categories === undefined) return
-		const subscribed: News[] = []
+		if (categories === undefined) return;
+		const subscribed: News[] = [];
 		for (const key in allNews) {
 			if (categories[allNews[key].category as keyof NewsCategory]) {
-				subscribed.push(allNews[key])
+				subscribed.push(allNews[key]);
 			}
 		}
-		subscribed.reverse()
-		setSubscribedNews(subscribed)
-	}, [categories, allNews])
+		subscribed.reverse();
+		setSubscribedNews(subscribed);
+	}, [categories, allNews]);
 
 	// greeting = {"Good Morning", "Good Afternoon", "Good Evening", "Good Night"}
 	const greeting = () => {
-		const date = new Date()
-		const hour = date.getHours()
+		const date = new Date();
+		const hour = date.getHours();
 		if (hour >= 0 && hour < 12) {
-			return 'Good Morning'
+			return 'Good Morning';
 		} else if (hour >= 12 && hour < 16) {
-			return 'Good Afternoon'
+			return 'Good Afternoon';
 		} else if (hour >= 16 && hour < 20) {
-			return 'Good Evening'
+			return 'Good Evening';
 		} else {
-			return 'Good Night'
+			return 'Good Night';
 		}
-	}
+	};
 
 	const date = () => {
-		const date = new Date()
-		const dayName = date.toLocaleString('default', { weekday: 'long' })
-		const monthName = date.toLocaleString('default', { month: 'long' })
-		const day = date.getDate()
+		const date = new Date();
+		const dayName = date.toLocaleString('default', { weekday: 'long' });
+		const monthName = date.toLocaleString('default', { month: 'long' });
+		const day = date.getDate();
 
-		return `${dayName}, ${day} ${monthName}`
-	}
+		return `${dayName}, ${day} ${monthName}`;
+	};
 
-	const [weather, setWeather] = useState<Weather | null>(null)
+	const [weather, setWeather] = useState<Weather | null>(null);
 
 	useEffect(() => {
-		if (userDetail?.city === undefined) return
+		if (userDetail?.city === undefined) return;
 
 		fetch(
 			`https://api.openweathermap.org/data/2.5/weather?q=${userDetail?.city}&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY}`
@@ -146,16 +146,16 @@ export default function Home() {
 						temp: Math.round((data.main.temp - 273.15) * 100) / 100,
 						description: data.weather[0].description,
 						icon: data.weather[0].icon,
-					})
+					});
 				} else {
 					setWeather({
 						temp: 0,
 						description: 'Not Found',
 						icon: '01d',
-					})
+					});
 				}
-			})
-	}, [userDetail])
+			});
+	}, [userDetail]);
 
 	return (
 		<main>
@@ -177,6 +177,7 @@ export default function Home() {
 										width={64}
 										height={64}
 										alt="weather icon"
+										priority
 										className="h-16 w-16"
 									/>
 									<div className="ml-4">
@@ -185,9 +186,7 @@ export default function Home() {
 									</div>
 								</div>
 							) : (
-								<p>
-									<ImSpinner3 className="animate-spin text-4xl" />
-								</p>
+								<ReactLoading type="spin" color="rgb(3 105 161)" height={100} width={50} />
 							)}
 						</div>
 					</div>
@@ -210,12 +209,12 @@ export default function Home() {
 				<button
 					className="my-1 rounded bg-sky-700 px-16 py-3 text-center text-white hover:bg-sky-600 focus:outline-none"
 					onClick={() => {
-						logout()
+						logout();
 					}}
 				>
 					Logout
 				</button>
 			</div>
 		</main>
-	)
+	);
 }

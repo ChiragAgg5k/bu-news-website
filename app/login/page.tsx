@@ -1,41 +1,41 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { FormEvent, useState } from 'react'
-import Link from 'next/link'
-import Login from './login'
-import { AiFillEye, AiTwotoneEyeInvisible } from 'react-icons/ai'
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useState } from 'react';
+import Link from 'next/link';
+import Login from './login';
+import { AiFillEye, AiTwotoneEyeInvisible } from 'react-icons/ai';
 
 export default function LoginPage() {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [showPassword, setShowPassword] = useState(false)
-	const [loadingText, setLoadingText] = useState('Login') // for login button
-	const [loading2, setLoading2] = useState(false) // for redirecting to signup
-	const router = useRouter()
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [loadingText, setLoadingText] = useState('Login'); // for login button
+	const [loading2, setLoading2] = useState(false); // for redirecting to signup
+	const router = useRouter();
 
 	const handleForm = async (event: FormEvent) => {
-		event.preventDefault()
-		setLoadingText('Logging In...')
+		event.preventDefault();
+		setLoadingText('Logging In...');
 
-		const { result, error } = await Login(email, password)
+		const { result, error } = await Login(email, password);
 
 		if (error) {
-			setLoadingText('Login Failed')
+			setLoadingText('Login Failed');
 			setTimeout(() => {
-				setLoadingText('Login')
-			}, 1000)
-			return console.log(error)
+				setLoadingText('Login');
+			}, 1000);
+			return console.log(error);
 		}
 
-		setLoadingText('Login Successful')
-		return router.push('/home')
-	}
+		setLoadingText('Login Successful');
+		return router.push('/home');
+	};
 
 	const handleShowPassword = () => {
-		setShowPassword(!showPassword)
-	}
+		setShowPassword(!showPassword);
+	};
 
 	return (
 		<div className="flex flex-col md:flex-row">
@@ -56,8 +56,8 @@ export default function LoginPage() {
 					<button
 						className="my-1 rounded bg-white px-16 py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
 						onClick={() => {
-							router.push('/signup')
-							setLoading2(true)
+							router.push('/signup');
+							setLoading2(true);
 						}}
 					>
 						{loading2 ? 'Loading...' : 'Sign up here'}
@@ -126,5 +126,5 @@ export default function LoginPage() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

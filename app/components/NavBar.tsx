@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import { BsFillPersonFill } from 'react-icons/bs'
-import Link from 'next/link'
+import { useEffect } from 'react';
+import { BsFillPersonFill } from 'react-icons/bs';
+import Link from 'next/link';
 
 export default function NavBar() {
 	useEffect(() => {
-		const upperNav = document.querySelector('#upperNav')
-		const subHeading = document.querySelector('#subHeading')
-		const nav = document.querySelector('nav')
+		const upperNav = document.querySelector('#upperNav');
+		const subHeading = document.querySelector('#subHeading');
+		const nav = document.querySelector('nav');
 
-		if (!upperNav || !subHeading || !nav) return
+		if (!upperNav || !subHeading || !nav) return;
 
 		window.addEventListener('scroll', () => {
 			if (window.scrollY > upperNav.clientHeight) {
-				subHeading.classList.remove('sm:invisible')
+				subHeading.classList.remove('sm:invisible');
 			} else {
-				subHeading.classList.add('sm:invisible')
+				subHeading.classList.add('sm:invisible');
 			}
-		})
-	}, [])
+		});
+	}, []);
 
 	return (
 		<>
@@ -60,5 +60,5 @@ export default function NavBar() {
 				</ul>
 			</nav>
 		</>
-	)
+	);
 }

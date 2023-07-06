@@ -1,13 +1,13 @@
-import Head from 'next/head'
-import './globals.css'
-import { Raleway } from 'next/font/google'
+import Head from 'next/head';
+import './globals.css';
+import { Raleway } from 'next/font/google';
 
-const raleway = Raleway({ subsets: ['latin'] })
+const raleway = Raleway({ subsets: ['latin'] });
 
 export const metadata = {
 	title: 'BU News',
 	description: 'The unofficial news source for Bennett University, by students, for students.',
-}
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -22,5 +22,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{children}
 			</body>
 		</html>
-	)
+	);
 }

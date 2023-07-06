@@ -1,29 +1,29 @@
-import Link from 'next/link'
-import { News, NewsCategory } from '../types'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link';
+import { News, NewsCategory } from '../types';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function SubscribedNews(props: {
-	subscribedNews: News[] | undefined
-	subscribedCategories: NewsCategory | undefined
-	guest: boolean
+	subscribedNews: News[] | undefined;
+	subscribedCategories: NewsCategory | undefined;
+	guest: boolean;
 }) {
-	const [categories, setCategories] = useState<String>('loading...')
-	const router = useRouter()
+	const [categories, setCategories] = useState<String>('loading...');
+	const router = useRouter();
 
 	useEffect(() => {
-		if (props.subscribedCategories === undefined) return
+		if (props.subscribedCategories === undefined) return;
 
-		let categories = ''
+		let categories = '';
 		for (const category in props.subscribedCategories) {
 			if (props.subscribedCategories.hasOwnProperty(category) && props.subscribedCategories[category]) {
-				categories += category + ', '
+				categories += category + ', ';
 			}
 		}
-		categories = categories.slice(0, -2)
-		setCategories(categories)
-	}, [props.subscribedCategories])
+		categories = categories.slice(0, -2);
+		setCategories(categories);
+	}, [props.subscribedCategories]);
 
 	return (
 		<div className="border-b-2 p-6 lg:p-8">
@@ -71,23 +71,25 @@ export default function SubscribedNews(props: {
 										/>
 									</div>
 								</div>
-							)
+							);
 						})}
 					</>
 				)}
 			</div>
-			<p className="mr-2 mt-4 inline-block text-base">
-				{props.guest
-					? 'You need to login to subscribe to news categories...'
-					: 'Subscribe to more news categories - '}
-			</p>
-			<button
-				className="disable:hover:cursor-default inline-block rounded bg-red-700 px-3 py-1 text-lg text-white transition ease-in-out hover:bg-red-600 active:bg-red-800 disabled:bg-gray-600"
-				disabled={props.guest}
-				onClick={() => {}}
-			>
-				Subscribe
-			</button>
+			<div className="mt-8 flex items-center justify-center">
+				<p className="mr-2 inline-block text-base">
+					{props.guest
+						? 'You need to login to subscribe to news categories...'
+						: 'Subscribe to more news categories - '}
+				</p>
+				<button
+					className="disable:hover:cursor-default inline-block rounded bg-red-700 px-3 py-1 text-lg text-white transition ease-in-out hover:bg-red-600 active:bg-red-800 disabled:bg-gray-600"
+					disabled={props.guest}
+					onClick={() => {}}
+				>
+					Subscribe
+				</button>
+			</div>
 		</div>
-	)
+	);
 }
