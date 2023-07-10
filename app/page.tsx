@@ -1,9 +1,9 @@
-"use client";
-import firebase_app from "@/firebase/config";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import { use, useEffect } from "react";
-import ReactLoading from "react-loading";
+'use client';
+import firebase_app from '@/firebase/config';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import ReactLoading from 'react-loading';
 
 export default function Home() {
 	const router = useRouter();
@@ -12,9 +12,9 @@ export default function Home() {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				router.push("/home");
+				router.push('/home');
 			} else {
-				router.push("/signup");
+				router.push('/signup');
 			}
 		});
 	}, [auth, router]);
