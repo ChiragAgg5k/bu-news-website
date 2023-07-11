@@ -1,7 +1,7 @@
 import { getDatabase, ref, set } from 'firebase/database';
-import firebase_app from '../../firebase/config';
+import firebase_app from '../../../firebase/config';
 import { createUserWithEmailAndPassword, getAuth, signInAnonymously } from 'firebase/auth';
-import { SignUpPageProps } from '../types';
+import { SignUpPageProps } from '../../types';
 
 const auth = getAuth(firebase_app);
 const db = getDatabase(firebase_app);
