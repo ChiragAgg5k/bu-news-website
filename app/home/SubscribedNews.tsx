@@ -46,11 +46,14 @@ export default function SubscribedNews(props: {
 									<h4 className="text-xl font-bold">{news.newsHeading}</h4>
 									<div className="flex flex-col sm:flex-row">
 										<div className="mb-4 text-base">
-											<p className="mb-4 mr-2 line-clamp-6 text-base">{news.newsDescription}</p>
-											<div className="mb-8 flex justify-between text-lg">
-												<p>- {news.username ? news.username : 'Anonymous'}</p>
+											<p className="mr-2 line-clamp-6 text-base">{news.newsDescription}</p>
+											<div className="mb-8 mt-4 flex flex-col-reverse justify-between text-lg sm:flex-row">
+												<p className="ml-auto sm:ml-0">
+													- {news.username ? news.username : 'Anonymous'}
+												</p>
 												<Link
 													className="mr-8 font-light hover:underline"
+													prefetch={true}
 													href={{
 														pathname: '/news/',
 														query: {

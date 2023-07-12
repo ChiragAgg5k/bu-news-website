@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { Signup, SignupAnonymously } from './signup';
 import { AiFillEye, AiTwotoneEyeInvisible } from 'react-icons/ai';
-import { SignUpPageProps } from '../types';
+import { SignUpPageProps } from '../../types';
 
 export default function SignUpPage() {
 	const [signUp, setSignUp] = useState<SignUpPageProps>({

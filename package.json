@@ -9,31 +9,24 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@tailwindcss/line-clamp": "^0.4.4",
-		"@types/node": "20.3.3",
+		"@types/node": "20.4.1",
 		"@types/react": "18.2.14",
 		"@types/react-dom": "18.2.6",
-		"autoprefixer": "10.4.14",
+		"autoprefixer": "^10.4.14",
+		"encoding": "^0.1.13",
 		"eslint": "8.44.0",
-		"eslint-config-next": "^13.4.8",
-		"firebase": "^9.23.0",
-		"fs": "0.0.1-security",
-		"net": "^1.0.2",
-		"next": "13.4.8",
-		"postcss": "8.4.24",
+		"eslint-config-next": "^13.4.9",
+		"firebase": "^10.0.0",
+		"next": "13.4.9",
 		"react": "^18.2.0",
 		"react-dom": "18.2.0",
 		"react-icons": "^4.10.1",
 		"react-loading": "^2.0.3",
-		"sharp": "^0.32.1",
-		"swipe-js-iso": "^2.1.5",
-		"tailwindcss": "3.3.2",
-		"tls": "^0.0.1",
+		"tailwindcss": "^3.3.2",
 		"typescript": "5.1.6"
 	},
 	"devDependencies": {
 		"@types/react-swipe": "^6.0.2",
-		"encoding": "^0.1.13",
 		"prettier": "^2.8.8",
 		"prettier-plugin-tailwindcss": "^0.3.0"
 	}

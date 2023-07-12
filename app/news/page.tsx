@@ -24,7 +24,7 @@ const AutoLink = (props: { text: string }) => {
 		/((?:https?:\/\/)?(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.[^\.|\s])+[a-z\.]*[a-z]+|(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})(?::\d{1,5})*[a-z0-9.,_\/~#&=;%+?\-\\(\\)]*)/gi;
 
 	return (
-		<p className="whitespace-pre-line">
+		<p className="whitespace-pre-line lg:mr-4">
 			{props.text.split(delimiter).map((word: string, index: number) => {
 				const match = word.match(delimiter);
 				if (match) {
@@ -87,13 +87,13 @@ export default function NewsPage() {
 				) : (
 					<div>
 						<h2 className="my-8 text-2xl font-bold">{news.newsHeading}</h2>
-						<div className="flex flex-col lg:flex-row lg:items-start">
+						<div className="flex flex-col-reverse lg:flex-row lg:items-start">
 							<AutoLink text={news.newsDescription} />
 							<Image
 								src={news.mImageUrl}
 								alt="News Image"
 								priority={true}
-								className="my-4 w-full max-w-sm object-contain lg:ml-8 lg:mr-4"
+								className="mx-auto mb-8 w-full max-w-sm object-contain"
 								width={500}
 								height={500}
 							/>
