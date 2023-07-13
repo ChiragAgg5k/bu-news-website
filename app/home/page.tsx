@@ -203,6 +203,7 @@ export default function Home() {
 				subscribedNews={subscribedNews}
 				subscribedCategories={categories}
 				guest={user?.isAnonymous ?? false}
+				uid={user?.uid}
 			/>
 			<div className="mt-20 flex flex-col items-center justify-center">
 				<p>Work in progress...</p>
