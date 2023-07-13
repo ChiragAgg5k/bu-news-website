@@ -20,7 +20,7 @@ export default function Home() {
 	}, [auth, router]);
 
 	return (
-		<div className="flex h-screen items-center justify-center">
+		<div className="flex h-screen items-center justify-center" id="app">
 			<ReactLoading type="bars" color="#000000" height={100} width={50} />
 		</div>
 	);
