@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import './globals.css';
 import { Raleway } from 'next/font/google';
 

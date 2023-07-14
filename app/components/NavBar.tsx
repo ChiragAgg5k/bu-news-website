@@ -42,20 +42,20 @@ export default function NavBar() {
 							Home
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
-						<a href="#" className="group mx-3 transition duration-300 sm:mx-4">
+						<Link href="/healines" className="group mx-3 transition duration-300 sm:mx-4">
 							Headlines
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
-						</a>
-						<a href="#" className="group mx-3 transition duration-300 sm:mx-4">
+						</Link>
+						<Link href="#" className="group mx-3 transition duration-300 sm:mx-4">
 							Events
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
-						</a>
-						<a
+						</Link>
+						<Link
 							href="#"
 							className="group mx-3 transition duration-300 before:content-['L_&_F'] sm:mx-4 sm:before:content-['Lost_And_Found']"
 						>
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
-						</a>
+						</Link>
 					</div>
 				</ul>
 			</nav>
