@@ -10,11 +10,7 @@ import PromotedNews from './PromotedNews';
 import { News, NewsCategory, UserDetail, Weather } from '../types';
 import SubscribedNews from './SubscribedNews';
 import ReactLoading from 'react-loading';
-
-function logout() {
-	const auth = getAuth(firebase_app);
-	auth.signOut();
-}
+import Footer from '../components/Footer';
 
 export default function Home() {
 	const [user, setUser] = useState<User | null>(null);
@@ -158,7 +154,7 @@ export default function Home() {
 	}, [userDetail]);
 
 	return (
-		<main>
+		<main className="flex min-h-screen flex-col justify-between">
 			<NavBar />
 			{/* Greeting and today's weather */}
 			<div className="flex flex-col border-b-2 lg:flex-row">
@@ -186,7 +182,7 @@ export default function Home() {
 									</div>
 								</div>
 							) : (
-								<ReactLoading type="spin" color="rgb(3 105 161)" height={100} width={50} />
+								<ReactLoading type="bars" color="rgb(3 105 161)" height={50} width={50} />
 							)}
 						</div>
 					</div>
@@ -205,17 +201,7 @@ export default function Home() {
 				guest={user?.isAnonymous ?? false}
 				uid={user?.uid}
 			/>
-			<div className="mt-20 flex flex-col items-center justify-center">
-				<p>Work in progress...</p>
-				<button
-					className="my-1 rounded bg-sky-700 px-16 py-3 text-center text-white hover:bg-sky-600 focus:outline-none"
-					onClick={() => {
-						logout();
-					}}
-				>
-					Logout
-				</button>
-			</div>
+			<Footer />
 		</main>
 	);
 }

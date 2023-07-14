@@ -68,7 +68,7 @@ export default function PromotedNews(props: { promotedNews: News[] }) {
 				</div>
 			) : (
 				<div className="flex h-full items-center justify-center py-20 lg:py-0">
-					<ReactLoading type="cylon" color="#000000" height={25} width={25} className="mr-4" />
+					<ReactLoading type="bars" color="#000000" height={30} width={30} className="mr-4" />
 					<p className="">Loading...</p>
 				</div>
 			)}

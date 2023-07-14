@@ -6,6 +6,9 @@ import { AllNews, News, NewsCategory } from '../types';
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 import firebase_app from '@/firebase/config';
 import ReactLoading from 'react-loading';
+import Image from 'next/image';
+import Link from 'next/link';
+import Footer from '../components/Footer';
 
 export default function Headlines() {
 	const allCategories = ['All', 'General', 'Sports', 'Clubs Related', 'Event'];
@@ -30,6 +33,7 @@ export default function Headlines() {
 
 			for (const key in data) {
 				if (data[key].authorized) {
+					data[key]['id'] = key;
 					all.push(data[key]);
 
 					if (data[key].category === 'General') {
@@ -61,38 +65,78 @@ export default function Headlines() {
 	}, [allNews]);
 
 	return (
-		<div className="">
+		<main className="flex min-h-screen flex-col justify-between">
 			<NavBar />
+			<div>
+				{/* Category Selector */}
+				<div className="ml-2 mt-4 flex overflow-scroll">
+					{allCategories.map((category, index) => {
+						return (
+							<button
+								key={index}
+								onClick={() => setSelectedCategory(category)}
+								className={`mb-4 mr-2 whitespace-nowrap rounded ${
+									selectedCategory === category ? 'bg-gray-400 text-white' : 'bg-gray-300'
+								} px-10 py-4 transition-all ease-in-out hover:bg-gray-400 hover:text-white active:bg-gray-500 sm:flex-grow`}
+							>
+								{category}
+							</button>
+						);
+					})}
+				</div>
 
-			{/* Category Selector */}
-			<div className="ml-2 mt-4 flex overflow-scroll">
-				{allCategories.map((category, index) => {
-					return (
-						<button
-							key={index}
-							onClick={() => setSelectedCategory(category)}
-							className="mb-4 mr-2 whitespace-nowrap rounded bg-gray-300 px-10 py-4 transition-all ease-in-out hover:bg-gray-400 hover:text-white active:bg-gray-500 sm:flex-grow"
-						>
-							{category}
-						</button>
-					);
-				})}
+				{/* Healines */}
+				<div className="px-6 lg:px-8">
+					{allNews === undefined || selectedCategory === undefined ? (
+						<div className="my-40 flex items-center justify-center">
+							<ReactLoading type="bars" color="#000" height={40} width={40} />
+						</div>
+					) : allNews[selectedCategory].length === 0 ? (
+						<p>No news found.</p>
+					) : (
+						// allNews[selectedCategory].map((news, index) => {
+						// 	return <div key={index}>{news.newsHeading}</div>;
+						// })
+						allNews[selectedCategory].map((news, index) => {
+							return (
+								<div key={index} className="my-12 flex flex-col sm:my-8">
+									<h4 className="text-xl font-bold">{news.newsHeading}</h4>
+									<div className="flex flex-col sm:flex-row">
+										<div className="mb-4 text-base">
+											<p className="mr-2 line-clamp-6 text-base">{news.newsDescription}</p>
+											<div className="mb-8 mt-4 flex flex-col-reverse justify-between text-lg sm:flex-row">
+												<p className="ml-auto sm:ml-0">
+													- {news.username ? news.username : 'Anonymous'}
+												</p>
+												<Link
+													className="mr-8 font-light hover:underline"
+													prefetch={true}
+													href={{
+														pathname: '/news/',
+														query: {
+															id: news.id,
+														},
+													}}
+												>
+													Continue Reading
+												</Link>
+											</div>
+										</div>
+										<Image
+											src={news.mImageUrl}
+											width={500}
+											height={300}
+											alt="news image"
+											className="max-h-72 w-auto object-contain sm:h-64 sm:w-auto"
+										/>
+									</div>
+								</div>
+							);
+						})
+					)}
+				</div>
 			</div>
-
-			{/* Healines */}
-			<div className="">
-				{allNews === undefined || selectedCategory === undefined ? (
-					<div className="my-40 flex items-center justify-center">
-						<ReactLoading type="bars" color="#000" height={40} width={40} />
-					</div>
-				) : allNews[selectedCategory].length === 0 ? (
-					<p>No news found.</p>
-				) : (
-					allNews[selectedCategory].map((news, index) => {
-						return <div key={index}>{news.newsHeading}</div>;
-					})
-				)}
-			</div>
-		</div>
+			<Footer />
+		</main>
 	);
 }
