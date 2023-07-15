@@ -4,13 +4,13 @@ import { User, getAuth } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { getDatabase, onValue, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
+import NavBar from '../../components/NavBar';
 import Image from 'next/image';
 import PromotedNews from './PromotedNews';
-import { News, NewsCategory, UserDetail, Weather } from '../types';
+import { News, NewsCategory, UserDetail, Weather } from '../../types';
 import SubscribedNews from './SubscribedNews';
 import ReactLoading from 'react-loading';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 export default function Home() {
 	const [user, setUser] = useState<User | null>(null);

@@ -29,7 +29,9 @@ export default function NavBar() {
 					<h4 className="hidden font-bold text-black sm:inline-block"> - The pulse of university life</h4>
 				</div>
 				<div className="flex items-center">
-					<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-5xl text-white hover:cursor-pointer hover:bg-red-600 active:bg-red-800" />
+					<Link href="/profile">
+						<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-5xl text-white hover:cursor-pointer hover:bg-red-600 active:bg-red-800" />
+					</Link>
 				</div>
 			</div>
 			<nav className="sticky top-0 z-20">
@@ -42,16 +44,16 @@ export default function NavBar() {
 							Home
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
-						<Link href="/healines" className="group mx-3 transition duration-300 sm:mx-4">
+						<Link href="/headlines" className="group mx-3 transition duration-300 sm:mx-4">
 							Headlines
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
-						<Link href="#" className="group mx-3 transition duration-300 sm:mx-4">
+						<Link href="/events" className="group mx-3 transition duration-300 sm:mx-4">
 							Events
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
 						<Link
-							href="#"
+							href="/lost_and_found"
 							className="group mx-3 transition duration-300 before:content-['L_&_F'] sm:mx-4 sm:before:content-['Lost_And_Found']"
 						>
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>

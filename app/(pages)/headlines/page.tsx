@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
-import { AllNews, News, NewsCategory } from '../types';
+import NavBar from '../../components/NavBar';
+import { AllNews, News, NewsCategory } from '../../types';
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 import firebase_app from '@/firebase/config';
 import ReactLoading from 'react-loading';
 import Image from 'next/image';
 import Link from 'next/link';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 export default function Headlines() {
 	const allCategories = ['All', 'General', 'Sports', 'Clubs Related', 'Event'];

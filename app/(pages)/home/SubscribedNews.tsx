@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { News, NewsCategory } from '../types';
+import { News, NewsCategory } from '../../types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';

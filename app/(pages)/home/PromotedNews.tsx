@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ImArrowRight2 } from 'react-icons/im';
 import Link from 'next/link';
-import { News } from '../types';
+import { News } from '../../types';
 import ReactLoading from 'react-loading';
 
 export default function PromotedNews(props: { promotedNews: News[] }) {
