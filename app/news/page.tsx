@@ -81,7 +81,7 @@ export default function NewsPage() {
 	return (
 		<div>
 			<NavBar />
-			<div className="m-4">
+			<div className="m-4 dark:text-white">
 				{news === undefined ? (
 					<p>Loading...</p>
 				) : (

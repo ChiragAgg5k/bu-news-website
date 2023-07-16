@@ -8,6 +8,13 @@ import ReactLoading from 'react-loading';
 export default function PromotedNews(props: { promotedNews: News[] }) {
 	const [activeNewsIndex, setActiveNewsIndex] = useState<number>(0);
 	const [activeNews, setActiveNews] = useState<News | null>(null);
+	const [loaderColor, setLoaderColor] = useState<string>('#000000');
+
+	useEffect(() => {
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			setLoaderColor('#ffffff');
+		}
+	}, []);
 
 	useEffect(() => {
 		if (!activeNews && props.promotedNews.length > 0) {
@@ -18,7 +25,7 @@ export default function PromotedNews(props: { promotedNews: News[] }) {
 	return (
 		<div className="w-full">
 			{activeNews ? (
-				<div className="relative m-4 rounded-xl bg-gray-100 p-4 transition-all ease-in-out hover:bg-gray-200">
+				<div className="relative m-4 rounded-xl bg-gray-100 p-4 transition-all ease-in-out hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700">
 					<div className="flex flex-col sm:flex-row">
 						<Image
 							src={activeNews.mImageUrl}
@@ -29,7 +36,7 @@ export default function PromotedNews(props: { promotedNews: News[] }) {
 						/>
 						<div className="p-5">
 							<h4 className="mb-2 font-bold">{activeNews.newsHeading}</h4>
-							<p className="mb-4">
+							<p className="mb-4 text-gray-700 dark:text-gray-300">
 								{activeNews.newsDescription.length > 200 ? (
 									<>
 										{activeNews.newsDescription.substring(0, 200)}
@@ -68,7 +75,7 @@ export default function PromotedNews(props: { promotedNews: News[] }) {
 				</div>
 			) : (
 				<div className="flex h-full items-center justify-center py-20 lg:py-0">
-					<ReactLoading type="bars" color="#000000" height={30} width={30} className="mr-4" />
+					<ReactLoading type="bars" color={loaderColor} height={30} width={30} className="mr-4" />
 					<p className="">Loading...</p>
 				</div>
 			)}

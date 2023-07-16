@@ -23,10 +23,14 @@ export default function NavBar() {
 
 	return (
 		<>
-			<div className="flex justify-between" id="upperNav">
+			<div
+				className="flex justify-between dark:text-white
+			"
+				id="upperNav"
+			>
 				<div className="flex items-center py-6">
-					<h2 className="ml-6 mr-2 inline-block text-3xl font-bold text-black sm:text-4xl">BU NEWS</h2>
-					<h4 className="hidden font-bold text-black sm:inline-block"> - The pulse of university life</h4>
+					<h2 className="ml-6 mr-2 inline-block text-3xl font-bold sm:text-4xl">BU NEWS</h2>
+					<h4 className="hidden font-bold sm:inline-block"> - The pulse of university life</h4>
 				</div>
 				<div className="flex items-center">
 					<Link href="/profile">

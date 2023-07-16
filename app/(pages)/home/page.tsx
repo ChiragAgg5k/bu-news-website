@@ -154,10 +154,10 @@ export default function Home() {
 	}, [userDetail]);
 
 	return (
-		<main className="flex min-h-screen flex-col justify-between">
+		<main className="flex min-h-screen flex-col justify-between dark:bg-zinc-900 dark:text-white">
 			<NavBar />
 			{/* Greeting and today's weather */}
-			<div className="flex flex-col border-b-2 lg:flex-row">
+			<div className="flex flex-col border-b-2 dark:border-gray-500 lg:flex-row">
 				<div className="w-full p-6 lg:p-8 lg:pr-0">
 					<div className="flex justify-between">
 						<div>
