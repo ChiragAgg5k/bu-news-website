@@ -100,7 +100,7 @@ export default function SubscribedNews(props: {
 					</>
 				)}
 			</div>
-			<div className="mt-8 flex items-center justify-center">
+			<div className="my-8 flex items-center justify-center">
 				<p className="mr-2 inline-block text-base">
 					{props.guest
 						? 'You need to login to subscribe to news categories...'
@@ -122,9 +122,14 @@ export default function SubscribedNews(props: {
 				onRequestClose={() => {
 					setIsOpen(false);
 				}}
-				className="flex h-screen items-center justify-center border-2 border-black"
+				className="flex h-screen items-center justify-center"
+				style={{
+					overlay: {
+						backgroundColor: 'rgba(0,0,0,0.5)',
+					},
+				}}
 			>
-				<div className="border-2 border-gray-400 bg-white p-10">
+				<div className="border-2 border-gray-400 bg-white p-10 dark:border-gray-900 dark:bg-gray-800 dark:text-white">
 					<h2 className="mb-4 text-center text-xl">Subscribe To Categories</h2>
 					<p className="text-medium mb-4">Select the categories you want to subscribe to:</p>
 					{subscribedCategories &&

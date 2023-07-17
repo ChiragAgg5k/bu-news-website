@@ -8,6 +8,9 @@ import Login from './login';
 import { AiFillEye, AiTwotoneEyeInvisible } from 'react-icons/ai';
 
 export default function LoginPage() {
+	const input_field_style =
+		'mb-4 bg-white block w-full rounded border border-gray-200 p-3 hover:border-red-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700';
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
@@ -46,25 +49,22 @@ export default function LoginPage() {
 				height={500}
 				className="pointer-events-none absolute z-10 h-full w-full object-cover opacity-5"
 			/>
-			<div className="relative z-0 flex w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 py-32 text-white md:min-h-screen">
+			<div className="relative z-0 flex w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 py-32 text-white dark:from-sky-900 dark:to-sky-950 md:min-h-screen">
 				<div className="z-20 text-center">
 					<h1 className="text-5xl font-bold">BU News</h1>
 					<h3 className="mb-8 text-lg">The pulse of University life</h3>
 
 					<p className="mb-5">New to BU News? Create an account to get started</p>
 
-					<button
+					<Link
 						className="my-1 rounded bg-white px-16 py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
-						onClick={() => {
-							router.push('/signup');
-							setLoading2(true);
-						}}
+						href="/signup"
 					>
 						{loading2 ? 'Loading...' : 'Sign up here'}
-					</button>
+					</Link>
 				</div>
 			</div>
-			<div className="flex min-h-screen w-full flex-col bg-gray-200 md:w-2/3">
+			<div className="flex min-h-screen w-full flex-col bg-gray-200 dark:bg-gray-700 md:w-2/3">
 				<Image
 					src={'/background.jpg'}
 					alt="Picture of the University"
@@ -73,12 +73,15 @@ export default function LoginPage() {
 					className="pointer-events-none absolute z-10 h-full w-full object-cover opacity-10 md:hidden"
 				/>
 				<div className="container z-10 mx-auto flex max-w-sm flex-1 flex-col items-center justify-center px-2">
-					<form className="w-full rounded bg-white px-6 py-10 text-black shadow-md" onSubmit={handleForm}>
+					<form
+						className="w-full rounded bg-white px-6 py-10 text-black shadow-md dark:bg-gray-800 dark:text-white"
+						onSubmit={handleForm}
+					>
 						<h1 className="mb-8 text-center text-3xl font-medium">Login</h1>
 
 						<input
 							type="text"
-							className="mb-4 block w-full rounded border border-gray-200 p-3 hover:border-red-300"
+							className={input_field_style}
 							name="email"
 							placeholder="Email"
 							required
@@ -99,7 +102,7 @@ export default function LoginPage() {
 							)}
 							<input
 								type={showPassword ? 'text' : 'password'}
-								className="block w-full rounded border border-gray-200 p-3 hover:border-red-300"
+								className="block w-full rounded border border-gray-200 bg-white p-3 hover:border-red-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
 								name="password"
 								placeholder="Password"
 								required
@@ -114,9 +117,9 @@ export default function LoginPage() {
 							{loadingText}
 						</button>
 
-						<div className="mt-8 text-center text-sm text-gray-700">
+						<div className="mt-8 text-center text-sm text-gray-700 dark:text-white">
 							Forgot your password?
-							<Link href="/forgot-password" className="border-b border-black">
+							<Link href="/forgot-password" className="border-b border-gray-700 dark:border-white">
 								{' '}
 								Click here{' '}
 							</Link>

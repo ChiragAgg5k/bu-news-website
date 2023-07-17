@@ -157,15 +157,15 @@ export default function Home() {
 		<main className="flex min-h-screen flex-col justify-between dark:bg-zinc-900 dark:text-white">
 			<NavBar />
 			{/* Greeting and today's weather */}
-			<div className="flex flex-col border-b-2 dark:border-gray-500 lg:flex-row">
+			<div className="flex flex-col border-b-2 py-4 dark:border-gray-700 lg:flex-row">
 				<div className="w-full p-6 lg:p-8 lg:pr-0">
 					<div className="flex justify-between">
 						<div>
-							<h2 className="text-3xl font-bold sm:text-4xl">{greeting()}</h2>
+							<h2 className="whitespace-nowrap text-3xl font-bold sm:text-4xl">{greeting()}</h2>
 							<h3 className="text-2xl font-bold sm:text-3xl">{userDetail?.name.split(' ')[0]}</h3>
 							<p className="text-lg">{date()}</p>
 						</div>
-						<div className="mr-8 lg:mr-0">
+						<div className="sm:mr-8 lg:mr-0">
 							{weather ? (
 								<div className="flex items-center">
 									<Image

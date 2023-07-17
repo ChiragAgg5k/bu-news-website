@@ -84,9 +84,9 @@ export default function Headlines() {
 								onClick={() => setSelectedCategory(category)}
 								className={`mb-4 mr-2 whitespace-nowrap rounded ${
 									selectedCategory === category
-										? 'bg-gray-400 text-white dark:bg-gray-600'
-										: 'bg-gray-300 dark:bg-gray-500'
-								} px-10 py-4 transition-all ease-in-out hover:bg-gray-400 hover:text-white active:bg-gray-500 sm:flex-grow`}
+										? 'bg-gray-400 text-white dark:bg-gray-700'
+										: 'bg-gray-300 dark:bg-gray-600'
+								} px-10 py-4 transition-all ease-in-out hover:bg-gray-400 hover:text-white active:bg-gray-500 dark:hover:bg-gray-700 sm:flex-grow`}
 							>
 								{category}
 							</button>
@@ -94,8 +94,8 @@ export default function Headlines() {
 					})}
 				</div>
 
-				{/* Healines */}
-				<div className="px-6 lg:px-8">
+				{/* Headlines */}
+				<div className="px-6 last:pb-8 lg:px-8">
 					{allNews === undefined || selectedCategory === undefined ? (
 						<div className="my-40 flex items-center justify-center">
 							<ReactLoading type="bars" color={loaderColor} height={40} width={40} />

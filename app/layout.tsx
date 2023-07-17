@@ -1,5 +1,6 @@
 import './globals.css';
 import { Raleway } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
 
 const raleway = Raleway({ subsets: ['latin'] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="manifest" href="/site.webmanifest" />
 			</head>
 			<body className={raleway.className} suppressHydrationWarning={true}>
+				<NextTopLoader showSpinner={false} />
 				{children}
 			</body>
 		</html>
