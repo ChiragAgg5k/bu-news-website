@@ -59,6 +59,7 @@ export default function LoginPage() {
 					<Link
 						className="my-1 rounded bg-white px-16 py-3 text-center text-red-500 hover:bg-gray-100 focus:outline-none"
 						href="/signup"
+						onClick={() => setLoading2(true)}
 					>
 						{loading2 ? 'Loading...' : 'Sign up here'}
 					</Link>
