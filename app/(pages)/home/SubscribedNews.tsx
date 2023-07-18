@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { News, NewsCategory } from '../types';
+import { News, NewsCategory } from '../../types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
@@ -45,7 +45,7 @@ export default function SubscribedNews(props: {
 	}, [props.subscribedCategories]);
 
 	return (
-		<div className="border-b-2 p-6 lg:p-8">
+		<div className="p-6 lg:p-8">
 			<h3 className="text-2xl font-bold">Subscribed News</h3>
 			<div className="mt-4">
 				{props.subscribedNews === undefined ? (
@@ -65,7 +65,9 @@ export default function SubscribedNews(props: {
 									<h4 className="text-xl font-bold">{news.newsHeading}</h4>
 									<div className="flex flex-col sm:flex-row">
 										<div className="mb-4 text-base">
-											<p className="mr-2 line-clamp-6 text-base">{news.newsDescription}</p>
+											<p className="mr-2 line-clamp-6 text-base text-gray-700 dark:text-gray-400">
+												{news.newsDescription}
+											</p>
 											<div className="mb-8 mt-4 flex flex-col-reverse justify-between text-lg sm:flex-row">
 												<p className="ml-auto sm:ml-0">
 													- {news.username ? news.username : 'Anonymous'}
@@ -98,7 +100,7 @@ export default function SubscribedNews(props: {
 					</>
 				)}
 			</div>
-			<div className="mt-8 flex items-center justify-center">
+			<div className="my-8 flex items-center justify-center">
 				<p className="mr-2 inline-block text-base">
 					{props.guest
 						? 'You need to login to subscribe to news categories...'
@@ -120,9 +122,14 @@ export default function SubscribedNews(props: {
 				onRequestClose={() => {
 					setIsOpen(false);
 				}}
-				className="flex h-screen items-center justify-center border-2 border-black"
+				className="flex h-screen items-center justify-center"
+				style={{
+					overlay: {
+						backgroundColor: 'rgba(0,0,0,0.5)',
+					},
+				}}
 			>
-				<div className="border-2 border-gray-400 bg-white p-10">
+				<div className="border-2 border-gray-400 bg-white p-10 dark:border-gray-900 dark:bg-gray-800 dark:text-white">
 					<h2 className="mb-4 text-center text-xl">Subscribe To Categories</h2>
 					<p className="text-medium mb-4">Select the categories you want to subscribe to:</p>
 					{subscribedCategories &&

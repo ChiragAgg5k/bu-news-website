@@ -3,8 +3,15 @@
 import { useEffect } from 'react';
 import { BsFillPersonFill } from 'react-icons/bs';
 import Link from 'next/link';
+import { animateScroll } from 'react-scroll';
 
 export default function NavBar() {
+	var scroll = animateScroll;
+
+	function scrollToTop() {
+		scroll.scrollToTop();
+	}
+
 	useEffect(() => {
 		const upperNav = document.querySelector('#upperNav');
 		const subHeading = document.querySelector('#subHeading');
@@ -23,35 +30,49 @@ export default function NavBar() {
 
 	return (
 		<>
-			<div className="flex justify-between" id="upperNav">
-				<div className="flex items-center py-6">
-					<h2 className="ml-6 mr-2 inline-block text-3xl font-bold text-black sm:text-4xl">BU NEWS</h2>
-					<h4 className="hidden font-bold text-black sm:inline-block"> - The pulse of university life</h4>
+			<div
+				className="flex justify-between dark:text-white
+			"
+				id="upperNav"
+			>
+				<div className="flex items-center py-8 pl-6 sm:pl-8">
+					<h2 className="mr-2 inline-block text-3xl font-bold sm:text-4xl">BU NEWS</h2>
+					<h4 className="hidden font-bold sm:inline-block"> - The pulse of university life</h4>
 				</div>
 				<div className="flex items-center">
-					<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-5xl text-white hover:cursor-pointer hover:bg-red-600 active:bg-red-800" />
+					<Link href="/profile">
+						<BsFillPersonFill className="mr-6 rounded-full bg-red-700 p-2 text-5xl text-white transition-all ease-in-out hover:scale-105 hover:cursor-pointer hover:bg-red-600 active:bg-red-800" />
+					</Link>
 				</div>
 			</div>
 			<nav className="sticky top-0 z-20">
 				<ul className="flex justify-between bg-sky-700 py-4 text-white">
-					<h3 id="subHeading" className="ml-5 hidden text-xl font-bold sm:invisible sm:inline-block">
+					<h3
+						id="subHeading"
+						title="Click to scroll to top"
+						className="group ml-5 hidden text-xl font-bold hover:cursor-pointer sm:invisible sm:inline-block"
+						onClick={() => {
+							scrollToTop();
+						}}
+					>
 						BU NEWS
+						<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 					</h3>
-					<div className="flex justify-center text-lg text-white sm:justify-end">
+					<div className="flex justify-between text-lg text-white sm:justify-end">
 						<Link href="/home" className="group mx-3 transition duration-300 sm:mx-4">
 							Home
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
-						<Link href="/healines" className="group mx-3 transition duration-300 sm:mx-4">
+						<Link href="/headlines" className="group mx-3 transition duration-300 sm:mx-4">
 							Headlines
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
-						<Link href="#" className="group mx-3 transition duration-300 sm:mx-4">
+						<Link href="/events" className="group mx-3 transition duration-300 sm:mx-4">
 							Events
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
 						<Link
-							href="#"
+							href="/lost_and_found"
 							className="group mx-3 transition duration-300 before:content-['L_&_F'] sm:mx-4 sm:before:content-['Lost_And_Found']"
 						>
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>

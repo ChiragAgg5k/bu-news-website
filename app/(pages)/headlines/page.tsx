@@ -1,20 +1,27 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
-import { AllNews, News, NewsCategory } from '../types';
+import NavBar from '../../components/NavBar';
+import { AllNews, News } from '../../types';
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 import firebase_app from '@/firebase/config';
 import ReactLoading from 'react-loading';
 import Image from 'next/image';
 import Link from 'next/link';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 export default function Headlines() {
 	const allCategories = ['All', 'General', 'Sports', 'Clubs Related', 'Event'];
 
 	const [selectedCategory, setSelectedCategory] = useState<string>('All');
 	const [allNews, setAllNews] = useState<AllNews | undefined>(undefined);
+	const [loaderColor, setLoaderColor] = useState<string>('#000000');
+
+	useEffect(() => {
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			setLoaderColor('#ffffff');
+		}
+	}, []);
 
 	// Fetch all news
 	useEffect(() => {
@@ -65,7 +72,7 @@ export default function Headlines() {
 	}, [allNews]);
 
 	return (
-		<main className="flex min-h-screen flex-col justify-between">
+		<main className="flex min-h-screen flex-col justify-between dark:text-white">
 			<NavBar />
 			<div>
 				{/* Category Selector */}
@@ -76,8 +83,10 @@ export default function Headlines() {
 								key={index}
 								onClick={() => setSelectedCategory(category)}
 								className={`mb-4 mr-2 whitespace-nowrap rounded ${
-									selectedCategory === category ? 'bg-gray-400 text-white' : 'bg-gray-300'
-								} px-10 py-4 transition-all ease-in-out hover:bg-gray-400 hover:text-white active:bg-gray-500 sm:flex-grow`}
+									selectedCategory === category
+										? 'bg-gray-400 text-white dark:bg-gray-700'
+										: 'bg-gray-300 dark:bg-gray-600'
+								} px-10 py-4 transition-all ease-in-out hover:bg-gray-400 hover:text-white active:bg-gray-500 dark:hover:bg-gray-700 sm:flex-grow`}
 							>
 								{category}
 							</button>
@@ -85,25 +94,24 @@ export default function Headlines() {
 					})}
 				</div>
 
-				{/* Healines */}
-				<div className="px-6 lg:px-8">
+				{/* Headlines */}
+				<div className="px-6 last:pb-8 lg:px-8">
 					{allNews === undefined || selectedCategory === undefined ? (
 						<div className="my-40 flex items-center justify-center">
-							<ReactLoading type="bars" color="#000" height={40} width={40} />
+							<ReactLoading type="bars" color={loaderColor} height={40} width={40} />
 						</div>
 					) : allNews[selectedCategory].length === 0 ? (
 						<p>No news found.</p>
 					) : (
-						// allNews[selectedCategory].map((news, index) => {
-						// 	return <div key={index}>{news.newsHeading}</div>;
-						// })
 						allNews[selectedCategory].map((news, index) => {
 							return (
 								<div key={index} className="my-12 flex flex-col sm:my-8">
 									<h4 className="text-xl font-bold">{news.newsHeading}</h4>
 									<div className="flex flex-col sm:flex-row">
 										<div className="mb-4 text-base">
-											<p className="mr-2 line-clamp-6 text-base">{news.newsDescription}</p>
+											<p className="mr-2 line-clamp-6 text-base dark:text-gray-400">
+												{news.newsDescription}
+											</p>
 											<div className="mb-8 mt-4 flex flex-col-reverse justify-between text-lg sm:flex-row">
 												<p className="ml-auto sm:ml-0">
 													- {news.username ? news.username : 'Anonymous'}
