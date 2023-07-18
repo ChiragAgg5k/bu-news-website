@@ -60,42 +60,49 @@ export default function ProfilePage() {
 		let storageRef;
 		let userRef;
 
-		if (!user) {
-			if (!userId) {
-				return;
-			}
+		// Show shared user's profile
+		if (!user && userId) {
 			userRef = ref(db, `users/${userId}`);
 			storageRef = getStorageRef(storage, `profile_images/${userId}`);
-		} else {
-			userRef = ref(db, `users/${user?.uid}`);
-			storageRef = getStorageRef(storage, `profile_images/${user?.uid}`);
+
+			// Show currently logged in user's profile
+		} else if (user && !userId) {
+			if (user.isAnonymous) {
+				setUserDetail({
+					name: 'Guest',
+					phoneNo: 'n/a',
+					city: 'n/a',
+					admin: false,
+				});
+				setUserProfileImageUrl('/default-profile-image.jpg');
+				return;
+			}
+			userRef = ref(db, `users/${user.uid}`);
+			storageRef = getStorageRef(storage, `profile_images/${user.uid}`);
+
+			// Even though user is logged in, since userID is present, show that user's profile
+		} else if (user && userId) {
+			userRef = ref(db, `users/${userId}`);
+			storageRef = getStorageRef(storage, `profile_images/${userId}`);
 		}
 
-		if (user?.isAnonymous) {
-			setUserDetail({
-				name: 'Guest',
-				phoneNo: 'n/a',
-				city: 'n/a',
-				admin: false,
-			});
+		// In case both user and userId are null, useEffect above redirects to signup page
 
-			setUserProfileImageUrl('/default-profile-image.jpg');
-		} else {
+		if (userRef) {
 			onValue(userRef, (snapshot) => {
-				setUserDetail(snapshot.val());
+				if (snapshot.exists()) {
+					setUserDetail(snapshot.val());
+				}
 			});
+		}
 
+		if (storageRef) {
 			getDownloadURL(storageRef)
 				.then((url) => {
-					if (url === null) {
-						return;
-					}
 					setUserProfileImageUrl(url);
 				})
 				.catch((error) => {
-					if (error.code === 'storage/object-not-found') {
-						setUserProfileImageUrl('/default-profile-image.jpg');
-					}
+					setUserProfileImageUrl('/default-profile-image.jpg');
 				});
 		}
 	}, [user, userId]);
@@ -104,13 +111,13 @@ export default function ProfilePage() {
 		<div className="h-screen dark:text-white">
 			<NavBar />
 
-			<div className="relativ mt-16 flex h-4/6 items-center justify-center sm:mt-0">
+			<div className="mt-16 flex h-4/6 items-center justify-center sm:mt-0">
 				<div className="relative flex flex-col rounded-lg border-2 border-gray-400 p-10">
 					<div className="flex flex-col-reverse items-center justify-between sm:flex-row">
 						<div className="pr-10 text-lg">
 							<h1 className="text-3xl font-bold">Profile</h1>
 							<p>Name: {userDetail?.name}</p>
-							<p>Email: {user?.email ? user?.email : 'not allowed'}</p>
+							<p>Email: {user?.email ? user?.email : 'n/a'}</p>
 							<p>Contact: {userDetail?.phoneNo}</p>
 							<p>City or Zip Code: {userDetail?.city}</p>
 						</div>
@@ -128,7 +135,9 @@ export default function ProfilePage() {
 							/>
 						)}
 					</div>
-					{user && (
+
+					{/* Don't show controls on sharable link */}
+					{user && !userId && (
 						<div className="mt-10 flex justify-around">
 							{!user.isAnonymous && (
 								<Link
@@ -147,8 +156,10 @@ export default function ProfilePage() {
 							</Link>
 						</div>
 					)}
-					{user &&
-						!user.isAnonymous &&
+
+					{/* Show share button only when not already on sharable link, and user is not Anonymous */}
+					{!user?.isAnonymous &&
+						!userId &&
 						(copied ? (
 							<AiFillCheckCircle
 								className="absolute bottom-4 right-4 text-3xl"
