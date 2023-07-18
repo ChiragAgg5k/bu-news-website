@@ -85,12 +85,18 @@ export default function ProfilePage() {
 				setUserDetail(snapshot.val());
 			});
 
-			getDownloadURL(storageRef).then((url) => {
-				if (url === null) {
-					return;
-				}
-				setUserProfileImageUrl(url);
-			});
+			getDownloadURL(storageRef)
+				.then((url) => {
+					if (url === null) {
+						return;
+					}
+					setUserProfileImageUrl(url);
+				})
+				.catch((error) => {
+					if (error.code === 'storage/object-not-found') {
+						setUserProfileImageUrl('/default-profile-image.jpg');
+					}
+				});
 		}
 	}, [user, userId]);
 
