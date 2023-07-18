@@ -4,4 +4,4 @@
 
 |                                |                                         |
 | ------------------------------ | --------------------------------------- |
-| ![Thumbnail 1](/Thumbnail.png) | ![Thumbnail 2](/portrait-thumbnail.png) |
+| ![Thumbnail 1](/thumbnail.png) | ![Thumbnail 2](/portrait-thumbnail.png) |
