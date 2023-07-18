@@ -1,3 +1,7 @@
-# BU News Website
+<h1 align="center">
+    BU News Website
+</h1>
 
-work in progress...
+|                                |                                         |
+| ------------------------------ | --------------------------------------- |
+| ![Thumbnail 1](/Thumbnail.png) | ![Thumbnail 2](/portrait-thumbnail.png) |

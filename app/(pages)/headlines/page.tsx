@@ -103,9 +103,6 @@ export default function Headlines() {
 					) : allNews[selectedCategory].length === 0 ? (
 						<p>No news found.</p>
 					) : (
-						// allNews[selectedCategory].map((news, index) => {
-						// 	return <div key={index}>{news.newsHeading}</div>;
-						// })
 						allNews[selectedCategory].map((news, index) => {
 							return (
 								<div key={index} className="my-12 flex flex-col sm:my-8">
