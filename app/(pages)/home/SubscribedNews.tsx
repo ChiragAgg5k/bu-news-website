@@ -75,12 +75,7 @@ export default function SubscribedNews(props: {
 												<Link
 													className="mr-8 font-light hover:underline"
 													prefetch={true}
-													href={{
-														pathname: '/news/',
-														query: {
-															id: news.id,
-														},
-													}}
+													href={`/news/${news.id}`}
 												>
 													Continue Reading
 												</Link>
