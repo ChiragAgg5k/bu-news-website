@@ -46,15 +46,7 @@ export default function PromotedNews(props: { promotedNews: News[] }) {
 									activeNews.newsDescription
 								)}
 							</p>
-							<Link
-								className="mr-8 font-light hover:underline"
-								href={{
-									pathname: '/news/',
-									query: {
-										id: activeNews.id,
-									},
-								}}
-							>
+							<Link className="mr-8 font-light hover:underline" href={`/news/${activeNews.id}`}>
 								Continue Reading
 							</Link>
 							<button

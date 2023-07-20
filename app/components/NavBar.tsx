@@ -63,7 +63,7 @@ export default function NavBar() {
 							Home
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
-						<Link href="/headlines" className="group mx-3 transition duration-300 sm:mx-4">
+						<Link href="/headlines/all" className="group mx-3 transition duration-300 sm:mx-4">
 							Headlines
 							<span className="block h-0.5 max-w-0 bg-white transition-all duration-500 group-hover:max-w-full"></span>
 						</Link>
