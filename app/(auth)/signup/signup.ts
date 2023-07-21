@@ -11,7 +11,7 @@ function writeUserData(userId: string, name: string, phoneNo: string, city: stri
 		admin: admin,
 		name: name,
 		city: city,
-		phoneNo: phoneNo,
+		phoneNo: phoneNo
 	});
 }
 

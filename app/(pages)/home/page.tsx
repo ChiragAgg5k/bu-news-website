@@ -32,7 +32,7 @@ export default function Home() {
 		name: '...',
 		phoneNo: '',
 		city: undefined,
-		admin: false,
+		admin: false
 	});
 
 	const [categories, setCategories] = useState<NewsCategory | undefined>(undefined);
@@ -52,13 +52,13 @@ export default function Home() {
 				name: 'Guest',
 				phoneNo: '',
 				city: '',
-				admin: false,
+				admin: false
 			});
 			setCategories({
 				'Clubs Related': false,
 				Event: false,
 				General: false,
-				Sports: false,
+				Sports: false
 			});
 		} else {
 			onValue(userRef, (snapshot) => {
@@ -141,13 +141,13 @@ export default function Home() {
 					setWeather({
 						temp: Math.round((data.main.temp - 273.15) * 100) / 100,
 						description: data.weather[0].description,
-						icon: data.weather[0].icon,
+						icon: data.weather[0].icon
 					});
 				} else {
 					setWeather({
 						temp: 0,
 						description: 'Not Found',
-						icon: '01d',
+						icon: '01d'
 					});
 				}
 			});
@@ -188,8 +188,8 @@ export default function Home() {
 					</div>
 					<div className="mt-8">
 						<p>
-							Welcome to BU News, the pulse of university life and the unofficial news source for the
-							students, faculty, and staff of Bennett University.
+							Welcome to BU News, the pulse of university life and the unofficial news source for the students, faculty,
+							and staff of Bennett University.
 						</p>
 					</div>
 				</div>

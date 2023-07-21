@@ -36,7 +36,7 @@ export default function ProfilePage() {
 		name: '...',
 		phoneNo: '...',
 		city: undefined,
-		admin: false,
+		admin: false
 	});
 
 	useEffect(() => {
@@ -72,7 +72,7 @@ export default function ProfilePage() {
 					name: 'Guest',
 					phoneNo: 'n/a',
 					city: 'n/a',
-					admin: false,
+					admin: false
 				});
 				setUserProfileImageUrl('/default-profile-image.jpg');
 				return;
@@ -161,10 +161,7 @@ export default function ProfilePage() {
 					{!user?.isAnonymous &&
 						!userId &&
 						(copied ? (
-							<AiFillCheckCircle
-								className="absolute bottom-4 right-4 text-3xl"
-								title="Copied to clipboard"
-							/>
+							<AiFillCheckCircle className="absolute bottom-4 right-4 text-3xl" title="Copied to clipboard" />
 						) : (
 							<CopyToClipboard text={`${window.location.href.split('?')[0] + '?userId=' + user?.uid}`}>
 								<AiOutlineShareAlt

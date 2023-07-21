@@ -6,7 +6,7 @@ const raleway = Raleway({ subsets: ['latin'] });
 
 export const metadata = {
 	title: 'BU News',
-	description: 'The unofficial news source for Bennett University, by students, for students.',
+	description: 'The unofficial news source for Bennett University, by students, for students.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

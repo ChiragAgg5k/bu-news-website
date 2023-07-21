@@ -18,7 +18,7 @@ export default function SignUpPage() {
 		name: '',
 		phoneNo: '',
 		city: '',
-		admin: false,
+		admin: false
 	});
 	const [loading1, setLoading1] = useState(false);
 	const [loadingText, setLoadingText] = useState('Sign Up');
@@ -119,7 +119,7 @@ export default function SignUpPage() {
 							onChange={(event) => {
 								setSignUp({
 									...signUp,
-									name: event.target.value,
+									name: event.target.value
 								});
 							}}
 							required
@@ -133,7 +133,7 @@ export default function SignUpPage() {
 							onChange={(event) => {
 								setSignUp({
 									...signUp,
-									email: event.target.value,
+									email: event.target.value
 								});
 							}}
 						/>
@@ -146,7 +146,7 @@ export default function SignUpPage() {
 							onChange={(event) => {
 								setSignUp({
 									...signUp,
-									phoneNo: event.target.value,
+									phoneNo: event.target.value
 								});
 							}}
 						/>
@@ -159,22 +159,16 @@ export default function SignUpPage() {
 							onChange={(event) => {
 								setSignUp({
 									...signUp,
-									city: event.target.value,
+									city: event.target.value
 								});
 							}}
 						/>
 
 						<div className="flex items-center justify-end">
 							{showPassword ? (
-								<AiTwotoneEyeInvisible
-									className="absolute z-20 mr-3 text-2xl"
-									onClick={() => handleShowPassword()}
-								/>
+								<AiTwotoneEyeInvisible className="absolute z-20 mr-3 text-2xl" onClick={() => handleShowPassword()} />
 							) : (
-								<AiFillEye
-									className="absolute z-20 mr-3 text-2xl"
-									onClick={() => handleShowPassword()}
-								/>
+								<AiFillEye className="absolute z-20 mr-3 text-2xl" onClick={() => handleShowPassword()} />
 							)}
 							<input
 								type={showPassword ? 'text' : 'password'}
@@ -186,7 +180,7 @@ export default function SignUpPage() {
 								onChange={(event) => {
 									setSignUp({
 										...signUp,
-										password: event.target.value,
+										password: event.target.value
 									});
 								}}
 							/>

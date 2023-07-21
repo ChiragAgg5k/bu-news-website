@@ -11,7 +11,7 @@ const allCategories = {
 	general: 'General',
 	sports: 'Sports',
 	'clubs-related': 'Clubs Related',
-	events: 'Event',
+	events: 'Event'
 };
 
 async function getNews(category: string): Promise<News[]> {
@@ -37,7 +37,7 @@ async function getNews(category: string): Promise<News[]> {
 }
 
 export default async function HeadlinesPage({
-	params,
+	params
 }: {
 	params: {
 		category: string;
@@ -79,18 +79,10 @@ export default async function HeadlinesPage({
 									<h4 className="text-xl font-bold">{news.newsHeading}</h4>
 									<div className="flex flex-col sm:flex-row">
 										<div className="mb-4 text-base">
-											<p className="mr-2 line-clamp-6 text-base dark:text-gray-400">
-												{news.newsDescription}
-											</p>
+											<p className="mr-2 line-clamp-6 text-base dark:text-gray-400">{news.newsDescription}</p>
 											<div className="mb-8 mt-4 flex flex-col-reverse justify-between text-lg sm:flex-row">
-												<p className="ml-auto sm:ml-0">
-													- {news.username ? news.username : 'Anonymous'}
-												</p>
-												<Link
-													className="mr-8 font-light hover:underline"
-													prefetch={true}
-													href={`/news/${news.id}`}
-												>
+												<p className="ml-auto sm:ml-0">- {news.username ? news.username : 'Anonymous'}</p>
+												<Link className="mr-8 font-light hover:underline" prefetch={true} href={`/news/${news.id}`}>
 													Continue Reading
 												</Link>
 											</div>

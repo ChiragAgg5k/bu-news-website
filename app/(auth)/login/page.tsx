@@ -91,15 +91,9 @@ export default function LoginPage() {
 
 						<div className="flex items-center justify-end">
 							{showPassword ? (
-								<AiTwotoneEyeInvisible
-									className="absolute z-20 mr-3 text-2xl"
-									onClick={() => handleShowPassword()}
-								/>
+								<AiTwotoneEyeInvisible className="absolute z-20 mr-3 text-2xl" onClick={() => handleShowPassword()} />
 							) : (
-								<AiFillEye
-									className="absolute z-20 mr-3 text-2xl"
-									onClick={() => handleShowPassword()}
-								/>
+								<AiFillEye className="absolute z-20 mr-3 text-2xl" onClick={() => handleShowPassword()} />
 							)}
 							<input
 								type={showPassword ? 'text' : 'password'}

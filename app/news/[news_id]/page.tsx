@@ -14,13 +14,13 @@ const news404: News = {
 	authorized: true,
 	category: 'All',
 	promoted: false,
-	username: 'Anonymous',
+	username: 'Anonymous'
 };
 
 function dateInMillisecondsToDateString(date: number) {
 	const d = new Date(date);
 	const month = d.toLocaleString('default', {
-		month: 'long',
+		month: 'long'
 	});
 	const day = d.getDate();
 	const year = d.getFullYear();
@@ -55,7 +55,7 @@ const AutoLink = (props: { text: string }) => {
 };
 
 export default async function NewsPage({
-	params,
+	params
 }: {
 	params: {
 		news_id: string;

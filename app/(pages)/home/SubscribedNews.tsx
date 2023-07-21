@@ -69,14 +69,8 @@ export default function SubscribedNews(props: {
 												{news.newsDescription}
 											</p>
 											<div className="mb-8 mt-4 flex flex-col-reverse justify-between text-lg sm:flex-row">
-												<p className="ml-auto sm:ml-0">
-													- {news.username ? news.username : 'Anonymous'}
-												</p>
-												<Link
-													className="mr-8 font-light hover:underline"
-													prefetch={true}
-													href={`/news/${news.id}`}
-												>
+												<p className="ml-auto sm:ml-0">- {news.username ? news.username : 'Anonymous'}</p>
+												<Link className="mr-8 font-light hover:underline" prefetch={true} href={`/news/${news.id}`}>
 													Continue Reading
 												</Link>
 											</div>
@@ -120,8 +114,8 @@ export default function SubscribedNews(props: {
 				className="flex h-screen items-center justify-center"
 				style={{
 					overlay: {
-						backgroundColor: 'rgba(0,0,0,0.5)',
-					},
+						backgroundColor: 'rgba(0,0,0,0.5)'
+					}
 				}}
 			>
 				<div className="border-2 border-gray-400 bg-white p-10 dark:border-gray-900 dark:bg-gray-800 dark:text-white">
@@ -138,7 +132,7 @@ export default function SubscribedNews(props: {
 										onClick={() => {
 											setSubscribedCategories({
 												...subscribedCategories,
-												[category]: !subscribedCategories[category],
+												[category]: !subscribedCategories[category]
 											});
 										}}
 									/>
