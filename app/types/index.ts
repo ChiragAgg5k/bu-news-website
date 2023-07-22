@@ -46,3 +46,9 @@ export interface AllNews {
 	General: News[];
 	Sports: News[];
 }
+
+export interface Events {
+	eventDate: number;
+	eventDescription: string;
+	eventHeading: string;
+}
