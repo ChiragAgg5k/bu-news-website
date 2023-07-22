@@ -58,7 +58,7 @@ export default function SignUpPage() {
 	return (
 		<div className="flex flex-col md:flex-row">
 			<Image
-				src={'/background.jpg'}
+				src={'/background.webp'}
 				alt="Picture of the University"
 				width={500}
 				height={500}
@@ -99,7 +99,7 @@ export default function SignUpPage() {
 			</div>
 			<div className="flex min-h-screen w-full flex-col bg-gray-200 dark:bg-gray-700 md:w-2/3">
 				<Image
-					src={'/background.jpg'}
+					src={'/background.webp'}
 					alt="Picture of the University"
 					width={500}
 					height={500}
