@@ -46,3 +46,14 @@ export interface AllNews {
 	General: News[];
 	Sports: News[];
 }
+
+export interface LostFoundPost {
+	type: 'lost' | 'found';
+	contactno: string;
+	itemDate: string;
+	itemDescription: string;
+	itemName: string;
+	itemImageUrl: string;
+	itemLocation: string;
+	toContactUID: string;
+}
