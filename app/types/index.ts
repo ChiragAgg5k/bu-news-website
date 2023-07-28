@@ -33,7 +33,7 @@ export interface Weather {
 }
 
 export interface NewsCategory {
-	'Clubs Related': boolean;
+	"Clubs Related": boolean;
 	[Event: string]: boolean;
 	General: boolean;
 	Sports: boolean;
@@ -41,19 +41,19 @@ export interface NewsCategory {
 
 export interface AllNews {
 	All: News[];
-	'Clubs Related': News[];
+	"Clubs Related": News[];
 	[Event: string]: News[];
 	General: News[];
 	Sports: News[];
 }
 
 export interface LostFoundPost {
-	type: 'lost' | 'found';
+	type: "lost" | "found";
 	contactno: string;
 	itemDate: string;
 	itemDescription: string;
 	itemName: string;
-	itemImageUrl: string;
+	itemImageURL: string;
 	itemLocation: string;
 	toContactUID: string;
 }

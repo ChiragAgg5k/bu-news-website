@@ -1,9 +1,8 @@
-import { LostFoundPost } from '@/app/types';
-import NavBar from '../../components/NavBar';
-import { get, getDatabase, ref } from 'firebase/database';
-import firebase_app from '@/firebase/config';
-
-export const revalidate = 15; // revalidate every 15 seconds
+import { LostFoundPost } from "@/app/types";
+import NavBar from "../../components/NavBar";
+import { get, getDatabase, ref } from "firebase/database";
+import firebase_app from "@/firebase/config";
+import PostsCarousel from "./PostsCarousel";
 
 async function getLostFoundData(): Promise<LostFoundPost[]> {
 	const db = getDatabase(firebase_app);
@@ -17,12 +16,12 @@ async function getLostFoundData(): Promise<LostFoundPost[]> {
 		const posts: LostFoundPost[] = [];
 
 		for (const key in lost) {
-			lost[key].type = 'lost';
+			lost[key].type = "lost";
 			posts.unshift(lost[key]);
 		}
 
 		for (const key in found) {
-			found[key].type = 'found';
+			found[key].type = "found";
 			posts.unshift(found[key]);
 		}
 
@@ -38,8 +37,7 @@ export default async function ProfilePage() {
 	return (
 		<div className="dark:text-white">
 			<NavBar />
-			<h1>LostFound Page</h1>
-			<p>{JSON.stringify(posts)}</p>
+			<PostsCarousel posts={posts} />
 		</div>
 	);
 }
