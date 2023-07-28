@@ -1,16 +1,16 @@
-'use client';
-import firebase_app from '@/firebase/config';
-import { User, getAuth } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
-import { getDatabase, onValue, ref } from 'firebase/database';
-import { useEffect, useState } from 'react';
-import NavBar from '../../components/NavBar';
-import Image from 'next/image';
-import PromotedNews from './PromotedNews';
-import { News, NewsCategory, UserDetail, Weather } from '../../types';
-import SubscribedNews from './SubscribedNews';
-import ReactLoading from 'react-loading';
-import Footer from '../../components/Footer';
+"use client";
+import firebase_app from "@/firebase/config";
+import { User, getAuth } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { getDatabase, onValue, ref } from "firebase/database";
+import { useEffect, useState } from "react";
+import NavBar from "../../components/NavBar";
+import Image from "next/image";
+import PromotedNews from "./PromotedNews";
+import { News, NewsCategory, UserDetail, Weather } from "../../types";
+import SubscribedNews from "./SubscribedNews";
+import ReactLoading from "react-loading";
+import Footer from "../../components/Footer";
 
 export default function Home() {
 	const [user, setUser] = useState<User | null>(null);
@@ -21,7 +21,7 @@ export default function Home() {
 
 		auth.onAuthStateChanged((user) => {
 			if (!user) {
-				router.push('/signup');
+				router.push("/signup");
 			} else {
 				setUser(user);
 			}
@@ -29,8 +29,8 @@ export default function Home() {
 	}, [router]);
 
 	const [userDetail, setUserDetail] = useState<UserDetail | null>({
-		name: '...',
-		phoneNo: '',
+		name: "...",
+		phoneNo: "",
 		city: undefined,
 		admin: false
 	});
@@ -52,10 +52,10 @@ export default function Home() {
 				name: 'Guest',
 				phoneNo: '',
 				city: '',
-				admin: false
+				admin: false,
 			});
 			setCategories({
-				'Clubs Related': false,
+				"Clubs Related": false,
 				Event: false,
 				General: false,
 				Sports: false
@@ -77,7 +77,7 @@ export default function Home() {
 			const promoted: News[] = [];
 			for (const key in data) {
 				if (data[key].authorized) {
-					data[key]['id'] = key;
+					data[key]["id"] = key;
 					if (data[key].promoted) {
 						promoted.push(data[key]);
 					}
@@ -108,20 +108,20 @@ export default function Home() {
 		const date = new Date();
 		const hour = date.getHours();
 		if (hour >= 0 && hour < 12) {
-			return 'Good Morning';
+			return "Good Morning";
 		} else if (hour >= 12 && hour < 16) {
-			return 'Good Afternoon';
+			return "Good Afternoon";
 		} else if (hour >= 16 && hour < 20) {
-			return 'Good Evening';
+			return "Good Evening";
 		} else {
-			return 'Good Night';
+			return "Good Night";
 		}
 	};
 
 	const date = () => {
 		const date = new Date();
-		const dayName = date.toLocaleString('default', { weekday: 'long' });
-		const monthName = date.toLocaleString('default', { month: 'long' });
+		const dayName = date.toLocaleString("default", { weekday: "long" });
+		const monthName = date.toLocaleString("default", { month: "long" });
 		const day = date.getDate();
 
 		return `${dayName}, ${day} ${monthName}`;
@@ -147,11 +147,18 @@ export default function Home() {
 					setWeather({
 						temp: 0,
 						description: 'Not Found',
-						icon: '01d'
+						icon: '01d',
 					});
 				}
 			});
 	}, [userDetail]);
+
+	if (!user)
+		return (
+			<div className="flex min-h-screen items-center justify-center dark:bg-zinc-900 dark:text-white">
+				<p className="text-xl font-medium">Redirecting...</p>
+			</div>
+		);
 
 	return (
 		<main className="flex min-h-screen flex-col justify-between dark:bg-zinc-900 dark:text-white">
@@ -162,7 +169,7 @@ export default function Home() {
 					<div className="flex justify-between">
 						<div>
 							<h2 className="whitespace-nowrap text-3xl font-bold sm:text-4xl">{greeting()}</h2>
-							<h3 className="text-2xl font-bold sm:text-3xl">{userDetail?.name.split(' ')[0]}</h3>
+							<h3 className="text-2xl font-bold sm:text-3xl">{userDetail?.name.split(" ")[0]}</h3>
 							<p className="text-lg">{date()}</p>
 						</div>
 						<div className="sm:mr-8 lg:mr-0">
